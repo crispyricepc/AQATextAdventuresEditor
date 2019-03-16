@@ -54,7 +54,7 @@ namespace SkeletonGameMaker
             List<string[]> results = Saves.Items[Saves.Items.GetIndexFromID(PrimaryID)].GetResults();
             if (results[0][0] == "north")
             {
-
+                
             }
         }
 
