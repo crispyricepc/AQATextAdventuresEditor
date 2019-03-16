@@ -10,6 +10,9 @@ using System.IO;
 
 namespace SkeletonGameMaker
 {
+    // <summary>
+    // Stores the Characters, Items and Places associated with the files
+    // </summary>
     public static class Saves
     {
         public static string Filename;
@@ -18,6 +21,9 @@ namespace SkeletonGameMaker
         public static List<Item> Items = new List<Item>();
         public static List<Place> Places = new List<Place>();
 
+        // <summary>
+        // Opens a .gme file and assigns the contents to the 3 object lists
+        // </summary>
         public static void LoadGame(string filename, List<Character> characters, List<Item> items, List<Place> places) // Loads a binary file called .gme
         {
             int noOfCharacters, noOfPlaces, NoOfItems;
@@ -66,6 +72,9 @@ namespace SkeletonGameMaker
                 }
             }
         }
+        // <summary>
+        // Creates a new .gme file based on the items stored in the static class Saves
+        // </summary>
         public static void MakeGame(string filename)
         {
             int noOfCharacters = Characters.Count;

@@ -16,6 +16,7 @@ namespace SkeletonGameMaker
             bool closed = false;
             do
             {
+                MainWindow window = new MainWindow();
                 if (e.Args.Length > 0)
                 {
                     Saves.Filename = e.Args[0];
@@ -25,12 +26,12 @@ namespace SkeletonGameMaker
                     GetFileName getFileName = new GetFileName();
                     getFileName.ShowDialog();
                 }
-                MainWindow window = new MainWindow();
 
                 try
                 {
                     Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
                     window.ShowDialog();
+                    closed = true;
                 }
                 catch (FileNotFoundException ex)
                 {

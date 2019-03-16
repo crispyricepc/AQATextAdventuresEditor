@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
-             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450" Height="360.7" Width="650.292">
+             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450">
     <Grid>
         <Label x:Name="LblHeader" Content="Items" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <ListView x:Name="LvItemsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvItemsList_SelectionChanged">
