@@ -18,8 +18,6 @@ namespace SkeletonGameMaker
         public static List<Item> Items = new List<Item>();
         public static List<Place> Places = new List<Place>();
 
-        public static event EventHandler OnItemListModified;
-
         public static void LoadGame(string filename, List<Character> characters, List<Item> items, List<Place> places) // Loads a binary file called .gme
         {
             int noOfCharacters, noOfPlaces, NoOfItems;

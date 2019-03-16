@@ -31,8 +31,6 @@ namespace SkeletonGameMaker
                 {
                     Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
                     window.ShowDialog();
-                    closed = true;
-                    Current.Shutdown();
                 }
                 catch (FileNotFoundException ex)
                 {

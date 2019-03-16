@@ -4,19 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
-             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <local:WidthConverter x:Key="WidthConv"/>
-        </ResourceDictionary>
-    </UserControl.Resources>
+             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450" Height="360.7" Width="650.292">
     <Grid>
         <Label x:Name="LblHeader" Content="Items" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <ListView x:Name="LvItemsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvItemsList_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="GvcolID">
-                        <GridViewColumnHeader Content="Item Names" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView} }, Converter={StaticResource WidthConv}}"/>
+                        <GridViewColumnHeader Content="Item Names"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
@@ -70,7 +65,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn>
-                                    <GridViewColumnHeader Content="Status List" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView} }, Converter={StaticResource WidthConv}}"/>
+                                    <GridViewColumnHeader Content="Status List"/>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
@@ -82,7 +77,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn>
-                                    <GridViewColumnHeader Content="Commands List" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView} }, Converter={StaticResource WidthConv}}"/>
+                                    <GridViewColumnHeader Content="Commands List"/>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
