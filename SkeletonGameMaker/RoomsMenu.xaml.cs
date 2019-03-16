@@ -59,32 +59,26 @@ namespace SkeletonGameMaker
         {
             ChangeSelectionToDirection(North, Room, LocationDirection.North);
         }
-
         private void BtnEast_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(East, Room, LocationDirection.East);
         }
-
         private void BtnSouth_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(South, Room, LocationDirection.South);
         }
-
         private void BtnWest_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(West, Room, LocationDirection.West);
         }
-
         private void BtnUp_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(Up, Room, LocationDirection.Up);
         }
-
         private void BtnDown_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(Down, Room, LocationDirection.Down);
         }
-
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             // this needs to delete all items in the room as well as all items contained in containers in the room AS WELL AS DOORS
@@ -95,10 +89,14 @@ namespace SkeletonGameMaker
             LvRoomsList.SelectedIndex = -1;
             UpdateList();
         }
-
         private void BtnNewItem_Click(object sender, RoutedEventArgs e)
         {
             OnBtnNewItemClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void BtnNewDoor_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Implemented");
         }
 
         private void TbDescription_TextChanged(object sender, TextChangedEventArgs e)
@@ -178,7 +176,11 @@ namespace SkeletonGameMaker
             return newPlace.id;
         }
 
-        private void CheckForDoors(Place room)
+        /// <summary>
+        /// Updates the locally stored variables that allow ALL rooms to be visible, including ones behind closed doors
+        /// </summary>
+        /// <param name="room"></param>
+        private void CheckForDoors(ref Place room)
         {
             foreach (Item item in room.GetItems(Saves.Items))
             {
@@ -188,24 +190,30 @@ namespace SkeletonGameMaker
                 {
                     List<string[]> itemResults = item.GetResults();
 
-                    switch (itemResults[0][0])
+                    switch (LocalConvert.ToLocationDirection(itemResults[0][0]))
                     {
-                        case "north":
+                        case LocationDirection.North:
+                            room.NorthDoor = item.ID;
                             North = Convert.ToInt16(itemResults[0][1]);
                             break;
-                        case "east":
+                        case LocationDirection.East:
+                            room.EastDoor = item.ID;
                             East = Convert.ToInt16(itemResults[0][1]);
                             break;
-                        case "south":
+                        case LocationDirection.South:
+                            room.SouthDoor = item.ID;
                             South = Convert.ToInt16(itemResults[0][1]);
                             break;
-                        case "west":
+                        case LocationDirection.West:
+                            room.WestDoor = item.ID;
                             West = Convert.ToInt16(itemResults[0][1]);
                             break;
-                        case "up":
+                        case LocationDirection.Up:
+                            room.UpDoor = item.ID;
                             Up = Convert.ToInt16(itemResults[0][1]);
                             break;
-                        case "down":
+                        case LocationDirection.Down:
+                            room.DownDoor = item.ID;
                             Down = Convert.ToInt16(itemResults[0][1]);
                             break;
                     }
@@ -213,25 +221,143 @@ namespace SkeletonGameMaker
             }
         }
 
+        /// <summary>
+        /// Updates all the room related buttons, including displaying the correct text depending on doors etc.
+        /// </summary>
+        /// <param name="room"></param>
         private void UpdateButtons(Place room)
         {
-            if (North != 0) BtnNorth.Content = "View North Room";
-            else BtnNorth.Content = "Create North Room";
+            // North door
+            if (North != 0)
+            {
+                BtnNorth.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnNorthDoor.Visibility = Visibility.Visible;
+                BtnNorth.Content = "View North Room";
+                if (Room.NorthDoor != -1)
+                {
+                    BtnNorthDoor.Content = "Modify North Door";
+                }
+                else
+                {
+                    BtnNorthDoor.Content = "Create North Door";
+                }
+            }
+            else
+            {
+                BtnNorthDoor.Visibility = Visibility.Collapsed;
+                BtnNorth.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnNorth.Content = "Create North Room";
+            }
 
-            if (South != 0) BtnSouth.Content = "View South Room";
-            else BtnSouth.Content = "Create South Room";
+            // South door
+            if (South != 0)
+            {
+                BtnSouth.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnSouthDoor.Visibility = Visibility.Visible;
+                BtnSouth.Content = "View South Room";
+                if (Room.SouthDoor != -1)
+                {
+                    BtnSouthDoor.Content = "Modify South Door";
+                }
+                else
+                {
+                    BtnSouthDoor.Content = "Create South Door";
+                }
+            }
+            else
+            {
+                BtnSouthDoor.Visibility = Visibility.Collapsed;
+                BtnSouth.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnSouth.Content = "Create South Room";
+            }
+                  
+            // East door
+            if (East != 0)
+            {
+                BtnEast.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnEastDoor.Visibility = Visibility.Visible;
+                BtnEast.Content = "View East Room";
+                if (Room.EastDoor != -1)
+                {
+                    BtnEastDoor.Content = "Modify East Door";
+                }
+                else
+                {
+                    BtnEastDoor.Content = "Create East Door";
+                }
+            }
+            else
+            {
+                BtnEastDoor.Visibility = Visibility.Collapsed;
+                BtnEast.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnEast.Content = "Create East Room";
+            }
 
-            if (East != 0) BtnEast.Content = "View East Room";
-            else BtnEast.Content = "Create East Room";
+            // West door
+            if (West != 0)
+            {
+                BtnWest.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnWestDoor.Visibility = Visibility.Visible;
+                BtnWest.Content = "View West Room";
+                if (room.WestDoor != -1)
+                {
+                    BtnWestDoor.Content = "Modify West Door";
+                }
+                else
+                {
+                    BtnWestDoor.Content = "Create West Door";
+                }
+            }
+            else
+            {
+                BtnWestDoor.Visibility = Visibility.Collapsed;
+                BtnWest.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnWest.Content = "Create West Room";
+            }
 
-            if (West != 0) BtnWest.Content = "View West Room";
-            else BtnWest.Content = "Create West Room";
+            // Up door
+            if (Up != 0)
+            {
+                BtnUp.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnUpDoor.Visibility = Visibility.Visible;
+                BtnUp.Content = "View Above Room";
+                if (room.UpDoor != -1)
+                {
+                    BtnUpDoor.Content = "Modify Above Door";
+                }
+                else
+                {
+                    BtnUpDoor.Content = "Create Above Door";
+                }
+            }
+            else
+            {
+                BtnUpDoor.Visibility = Visibility.Collapsed;
+                BtnUp.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnUp.Content = "Create Above Room";
+            }
 
-            if (Up != 0) BtnUp.Content = "View Above Room";
-            else BtnUp.Content = "Create Above Room";
-
-            if (Down != 0) BtnDown.Content = "View Below Room";
-            else BtnDown.Content = "Create Below Room";
+            // Down door
+            if (Down != 0)
+            {
+                BtnDown.SetValue(Grid.ColumnSpanProperty, 1);
+                BtnDownDoor.Visibility = Visibility.Visible;
+                BtnDown.Content = "View Below Room";
+                if (room.DownDoor != -1)
+                {
+                    BtnDownDoor.Content = "Modify Below Door";
+                }
+                else
+                {
+                    BtnDownDoor.Content = "Create Below Door";
+                }
+            }
+            else
+            {
+                BtnDownDoor.Visibility = Visibility.Collapsed;
+                BtnDown.SetValue(Grid.ColumnSpanProperty, 2);
+                BtnDown.Content = "Create Below Room";
+            }
         }
 
         private void UpdateGrdDetails(int placeIndex)
@@ -244,9 +370,7 @@ namespace SkeletonGameMaker
             Up = Room.Up;
             Down = Room.Down;
 
-            // Updates the locally stored variables that allow ALL rooms to be visible, including ones behind closed doors
-            // This doesn't affect how the rooms are stored in the save file, viewing from the game still prevents travel
-            CheckForDoors(Room);
+            CheckForDoors(ref Room);
 
             // Update Description
             TbDescription.Text = Room.Description;

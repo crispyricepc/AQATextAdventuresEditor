@@ -119,6 +119,13 @@ namespace SkeletonGameMaker
             }
         }
 
+        /// <summary>
+        /// Finds the next available ID in a list between two numbers
+        /// </summary>
+        /// <param name="lower"></param>
+        /// <param name="upper"></param>
+        /// <param name="idList"></param>
+        /// <returns></returns>
         public static int FindFreeID(int lower, int upper, int[] idList)
         {
             int possibleID = lower - 1;

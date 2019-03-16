@@ -63,12 +63,12 @@
                     <Button x:Name="BtnDown" Content="View Down Room" Margin="0,2.5,2.5,2.5" Click="BtnDown_Click" Grid.Row="5" Grid.ColumnSpan="1"/>
                     <Button x:Name="BtnDelete" Content="Delete Room" Margin="0,2.5" Click="BtnDelete_Click" Grid.Row="6" Grid.ColumnSpan="2"/>
                     
-                    <Button x:Name="BtnNorthDoor" Content="Create North Door" Click="BtnNorth_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.Column="1"/>
-                    <Button x:Name="BtnEastDoor" Content="Create East Door" Margin="0,2.5,2.5,2.5" Click="BtnEast_Click" Grid.Row="1" Grid.Column="1"/>
-                    <Button x:Name="BtnSouthDoor" Content="Create South Door" Margin="0,2.5,2.5,2.5" Click="BtnSouth_Click" Grid.Row="2" Grid.Column="1"/>
-                    <Button x:Name="BtnWestDoor" Content="Create West Door" Margin="0,2.5,2.5,2.5" Click="BtnWest_Click" Grid.Row="3" Grid.Column="1"/>
-                    <Button x:Name="BtnUpDoor" Content="Create Up Door" Margin="0,2.5,2.5,2.5" Click="BtnUp_Click" Grid.Row="4" Grid.Column="1"/>
-                    <Button x:Name="BtnDownDoor" Content="Create Down Door" Margin="0,2.5,2.5,2.5" Click="BtnDown_Click" Grid.Row="5" Grid.Column="1"/>
+                    <Button x:Name="BtnNorthDoor" Content="Create North Door" Click="BtnNewDoor_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.Column="1"/>
+                    <Button x:Name="BtnEastDoor" Content="Create East Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="1" Grid.Column="1"/>
+                    <Button x:Name="BtnSouthDoor" Content="Create South Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="2" Grid.Column="1"/>
+                    <Button x:Name="BtnWestDoor" Content="Create West Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="3" Grid.Column="1"/>
+                    <Button x:Name="BtnUpDoor" Content="Create Up Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="4" Grid.Column="1"/>
+                    <Button x:Name="BtnDownDoor" Content="Create Down Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="5" Grid.Column="1"/>
                 </Grid>
                 <Grid x:Name="GrdItemButtons" Grid.Column="1">
                     <Button x:Name="BtnNewItem" Content="New Item" VerticalAlignment="Top" Click="BtnNewItem_Click" Margin="10,0"/>

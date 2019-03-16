@@ -17,8 +17,6 @@ namespace SkeletonGameMaker
 
     /// <summary>
     /// Contains the details and methods associated with items
-    /// Statuses are stored in one string. To get them in list form, call GetStatus()
-    /// Results and Commands can be called in a similar way
     /// </summary>
     public class Item
     {
