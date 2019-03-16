@@ -15,9 +15,14 @@ namespace SkeletonGameMaker
         public static string[] Door = new string[3] { "open", "close", "locked" };
     }
 
+    /// <summary>
+    /// Contains the details and methods associated with items
+    /// Statuses are stored in one string. To get them in list form, call GetStatus()
+    /// Results and Commands can be called in a similar way
+    /// </summary>
     public class Item
     {
-        public bool isGettable
+        public bool IsGettable
         {
             get
             {
@@ -59,7 +64,7 @@ namespace SkeletonGameMaker
                 string[] commandArray = Commands.Split(',');
                 List<string> commandList = commandArray.ToList();
 
-                if (isGettable)
+                if (IsGettable)
                 {
                     commandList.Remove("get");
                 }
@@ -125,7 +130,7 @@ namespace SkeletonGameMaker
                 }
             }
 
-            if (isGettable)
+            if (IsGettable)
             {
                 newCommand += ",get";
             }
@@ -261,7 +266,7 @@ namespace SkeletonGameMaker
             try
             {
                 List<string[]> resultList = GetResults();
-                if (isGettable && command == "get")
+                if (IsGettable && command == "get")
                 {
                     return true;
                 }
@@ -284,7 +289,7 @@ namespace SkeletonGameMaker
             {
                 throw new InputException("Two commands of the same type cannot be added (try removing the first instance before adding a new one)");
             }
-            if (newCommand == "get" && !isGettable)
+            if (newCommand == "get" && !IsGettable)
             {
                 throw new InputException("The item is gettable, therefore you cannot add a get command. Delete the gettable status and try again");
             }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SkeletonGameMaker
 {
+    /// <summary>
+    /// Inherited from Item
+    /// Contains two IDs that consist of two items in the Items List
+    /// </summary>
     public class Door : Item
     {
         public int PrimaryID, SecondaryID;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SkeletonGameMaker
 {
+    /// <summary>
+    /// Stores a character object
+    /// </summary>
     public class Character
     {
         public string Name, Description;
