@@ -1,0 +1,398 @@
+{
+  "FileName": "flag1og",
+  "Characters": [
+    {
+      "Name": "me",
+      "Description": "You think you look OK",
+      "ID": 1001,
+      "CurrentLocation": 1
+    },
+    {
+      "Name": "guard",
+      "Description": "The guard is about 180cm tall.  He is wearing a red uniform.",
+      "ID": 1002,
+      "CurrentLocation": 5
+    }
+  ],
+  "Items": [
+    {
+      "ID": 2001,
+      "Location": 1,
+      "Description": "It is a green door",
+      "Status": "close",
+      "Name": "green door",
+      "Commands": "open,close",
+      "Results": "north,3;north,0"
+    },
+    {
+      "ID": 12001,
+      "Location": 3,
+      "Description": "It is a green door",
+      "Status": "close",
+      "Name": "green door",
+      "Commands": "open,close",
+      "Results": "south,1;south,0"
+    },
+    {
+      "ID": 2002,
+      "Location": 1,
+      "Description": "It is a yellow door",
+      "Status": "close",
+      "Name": "yellow door",
+      "Commands": "open,close",
+      "Results": "west,4;west,0"
+    },
+    {
+      "ID": 12002,
+      "Location": 4,
+      "Description": "It is a yellow door",
+      "Status": "close",
+      "Name": "yellow door",
+      "Commands": "open,close",
+      "Results": "east,1;east,0"
+    },
+    {
+      "ID": 2003,
+      "Location": 1,
+      "Description": "It is a cupboard door",
+      "Status": "close",
+      "Name": "cupboard door",
+      "Commands": "open,close",
+      "Results": "east,2;east,0"
+    },
+    {
+      "ID": 12003,
+      "Location": 2,
+      "Description": "It is a cupboard door",
+      "Status": "close",
+      "Name": "cupboard door",
+      "Commands": "open,close",
+      "Results": "west,1;west,0"
+    },
+    {
+      "ID": 2004,
+      "Location": 1,
+      "Description": "It is a large colourful rug",
+      "Status": "large",
+      "Name": "rug",
+      "Commands": "move,get",
+      "Results": "say,You can see a trapdoor underneath;say,You can't get that it is too big"
+    },
+    {
+      "ID": 2005,
+      "Location": 1,
+      "Description": "It is a trapdoor.  There is a ringpull that can be used to open it.",
+      "Status": "close",
+      "Name": "trapdoor",
+      "Commands": "open,close",
+      "Results": "down,8;down,0"
+    },
+    {
+      "ID": 12005,
+      "Location": 8,
+      "Description": "It is a trapdoor.  There is a ringpull that can be used to open it.",
+      "Status": "close",
+      "Name": "trapdoor",
+      "Commands": "open,close",
+      "Results": "up,1;up,0"
+    },
+    {
+      "ID": 2006,
+      "Location": 3,
+      "Description": "It is a wooden rocking chair.  It looks comfortable.",
+      "Status": "usable,large",
+      "Name": "rocking chair",
+      "Commands": "use,move,get",
+      "Results": "say,Hmmm that is a comfortable chair;say,You can't do that it is attached to the floor;say,You can't get that it is too big"
+    },
+    {
+      "ID": 2007,
+      "Location": 3,
+      "Description": "It is a bed. There are no sheets or blankets on it but other than that it looks like the one you have at home.",
+      "Status": "usable,large",
+      "Name": "bed",
+      "Commands": "use,move",
+      "Results": "say,You wake up feeling refreshed and ready to go;say,You can't do that it is attached to the floor"
+    },
+    {
+      "ID": 2008,
+      "Location": 2,
+      "Description": "There is a set of shelves.",
+      "Status": "container,large",
+      "Name": "shelves",
+      "Commands": "move",
+      "Results": "say,You can't do that they are attached to the floor"
+    },
+    {
+      "ID": 2009,
+      "Location": 2008,
+      "Description": "The book is badly water-damaged.  Only one page is readable.",
+      "Status": "gettable,medium",
+      "Name": "book",
+      "Commands": "read,get",
+      "Results": "say,The guard likes to play games of chance. If you lose he will take something you own but if you win you can take something that he owns. To play a dice game with him use the command 'playdice guard'.  If you have more than one die he won't let you choose which one you use."
+    },
+    {
+      "ID": 2010,
+      "Location": 6,
+      "Description": "It is the flag that you have been looking for.",
+      "Status": "gettable,medium",
+      "Name": "flag",
+      "Commands": "get",
+      "Results": "win"
+    },
+    {
+      "ID": 2011,
+      "Location": 7,
+      "Description": "It is a human skeleton, they are definitely dead.",
+      "Status": "horrible,large",
+      "Name": "skeleton",
+      "Commands": "get,move",
+      "Results": "say,You decide you don't want to do that;say,The skeleton is now in a different place in the cell"
+    },
+    {
+      "ID": 2012,
+      "Location": 5,
+      "Description": "It is a chair, there is nothing special about it.  The guard seems to think it is a bit strange that you are staring at his chair.",
+      "Status": "occupied,large",
+      "Name": "chair",
+      "Commands": "move,use",
+      "Results": "say,You can't do that there is someone sitting on it;use,The guard won't let you sit on his lap"
+    },
+    {
+      "ID": 2013,
+      "Location": 5,
+      "Description": "It is a plain desk.",
+      "Status": "container,large",
+      "Name": "desk",
+      "Commands": "move",
+      "Results": "say,You can't do that it is bolted to the floor"
+    },
+    {
+      "ID": 2014,
+      "Location": 1001,
+      "Description": "It is an empty plastic flask.",
+      "Status": "gettable,container,small",
+      "Name": "flask",
+      "Commands": "get",
+      "Results": "n/a"
+    },
+    {
+      "ID": 2015,
+      "Location": 8,
+      "Description": "It is a barrel containing water.",
+      "Status": "container,large,water,liquid",
+      "Name": "barrel",
+      "Commands": "get,move",
+      "Results": "say,It is too heavy to pick up;say,It is too heavy to move"
+    },
+    {
+      "ID": 2016,
+      "Location": 8,
+      "Description": "It is a dusty shelf.",
+      "Status": "container,large",
+      "Name": "shelf",
+      "Commands": "move",
+      "Results": "say,It is attached to the wall"
+    },
+    {
+      "ID": 2017,
+      "Location": 2016,
+      "Description": "It is a black die.  It is an adjustable weighted die - before rolling you can adjust a weight so that you can choose within which range a number will be rolled.",
+      "Status": "gettable,tiny",
+      "Name": "black die",
+      "Commands": "use,get",
+      "Results": "roll,X,Y"
+    },
+    {
+      "ID": 2018,
+      "Location": 1001,
+      "Description": "It is an apple.  It looks tasty.",
+      "Status": "gettable,tiny,edible",
+      "Name": "apple",
+      "Commands": "get",
+      "Results": "n/a"
+    },
+    {
+      "ID": 2019,
+      "Location": 1001,
+      "Description": "It is an empty glass jar.  The lid is missing.",
+      "Status": "gettable,container,small,fragile",
+      "Name": "jar",
+      "Commands": "get",
+      "Results": "n/a"
+    },
+    {
+      "ID": 2020,
+      "Location": 1,
+      "Description": "It is a battery-operated torch.",
+      "Status": "gettable,powered,off,lightable,small",
+      "Name": "torch",
+      "Commands": "use,get",
+      "Results": "say,It is easier to see now"
+    },
+    {
+      "ID": 2021,
+      "Location": 1002,
+      "Description": "It is a truncheon, it looks dangerous.",
+      "Status": "gettable,weapon,medium",
+      "Name": "truncheon",
+      "Commands": "get",
+      "Results": "n/a"
+    },
+    {
+      "ID": 2022,
+      "Location": 1002,
+      "Description": "It is a gold metal key.",
+      "Status": "gettable,tiny",
+      "Name": "gold key",
+      "Commands": "use,get",
+      "Results": "lockunlock,2023"
+    },
+    {
+      "ID": 2023,
+      "Location": 5,
+      "Description": "It is a gold metal door.",
+      "Status": "locked",
+      "Name": "gold door",
+      "Commands": "open,close",
+      "Results": "north,6;north,0"
+    },
+    {
+      "ID": 12023,
+      "Location": 6,
+      "Description": "It is a gold metal door.  There is a guard room on the otherside of the door.",
+      "Status": "locked",
+      "Name": "gold door",
+      "Commands": "open,close",
+      "Results": "south,5;south,0"
+    },
+    {
+      "ID": 2024,
+      "Location": 1002,
+      "Description": "It is a silver metal key.",
+      "Status": "gettable,tiny",
+      "Name": "silver key",
+      "Commands": "use,get",
+      "Results": "lockunlock,2025"
+    },
+    {
+      "ID": 2025,
+      "Location": 5,
+      "Description": "It is a silver metal door with bars on it.  There are some bones on the floor in the jail cell the door leads to.",
+      "Status": "locked",
+      "Name": "silver door",
+      "Commands": "open,close",
+      "Results": "south,7;south,0"
+    },
+    {
+      "ID": 12025,
+      "Location": 7,
+      "Description": "It is a silver metal door with bars on it.  There is a guard room on the otherside of the door.",
+      "Status": "locked",
+      "Name": "silver door",
+      "Commands": "open,close",
+      "Results": "north,5;north,0"
+    },
+    {
+      "ID": 2026,
+      "Location": 1,
+      "Description": "It is a red die, it is weighted.",
+      "Status": "gettable,tiny",
+      "Name": "red die",
+      "Commands": "use,get",
+      "Results": "roll,1,1"
+    },
+    {
+      "ID": 2027,
+      "Location": 1002,
+      "Description": "It is a blue die.",
+      "Status": "gettable,tiny",
+      "Name": "blue die",
+      "Commands": "use,get",
+      "Results": "roll,1,6"
+    }
+  ],
+  "Places": [
+    {
+      "Description": "You are in a room with blue walls.  There is a green door in the north wall, a yellow door in the western wall and a cupboard door in the eastern wall. There is a Persian rug on the floor.",
+      "id": 1,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a store cupboard.  There are some shelves in the cupboard. There is a cupboard door to the west going back to the room.",
+      "id": 2,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a small room with a narrow, sloping roof. There is a rocking chair in the room and a bare bed up against one of the walls.  There is a green door in the southern wall.",
+      "id": 3,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a long, empty corridor.  There is a yellow door in the eastern wall and a room at the western end of the corridor.",
+      "id": 4,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 5,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a guardroom.  There is a metal silver door leading to a jail cell in the southern wall, there is a gold metal door leading to a jail cell in the northern wall.  There is a clear desk with a chair behind it.  Sitting in the chair is a guard.  There is a corridor going eastwards.",
+      "id": 5,
+      "North": 0,
+      "East": 4,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a jail cell.  To the south there is a gold door.",
+      "id": 6,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a jail cell.  There is a skeleton in the corner.  To the north there is a silver door.",
+      "id": 7,
+      "North": 5,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 0,
+      "Down": 0
+    },
+    {
+      "Description": "You are in a cellar.  There is a ladder going up.  There is a shelf going around the wall and a barrel on the floor.",
+      "id": 8,
+      "North": 0,
+      "East": 0,
+      "South": 0,
+      "West": 0,
+      "Up": 1,
+      "Down": 0
+    }
+  ]
+}

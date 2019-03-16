@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="SkeletonGameMaker.RoomsMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SkeletonGameMaker"
+             mc:Ignorable="d" Loaded="UserControl_Loaded" Height="493" Width="950">
+    <Grid x:Name="Grd">
+        <Label x:Name="LblHeader" Content="Rooms" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
+        <ListView x:Name="LvRoomsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvRoomsList_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="GvcolID" Width="157">
+                        <GridViewColumnHeader Content="ID"/>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid x:Name="GrdDetails" Margin="182,57,10,41">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="GrdDescription" Grid.Row="0">
+                <TextBox x:Name="TbDescription" TextChanged="TbDescription_TextChanged" TextWrapping="Wrap" Margin="0,0,0,10"/>
+            </Grid>
+            <Grid x:Name="GrdEditor" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="GrdItemsList" Grid.Row="1">
+                    <ListView x:Name="LvItemsList" SelectionChanged="LvItemsList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="GvColItem">
+                                    <GridViewColumnHeader Content="Items"/>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+                <Grid x:Name="GrdRoomButtons" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="BtnNorth" Content="View North Room" Click="BtnNorth_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnEast" Content="View East Room" Margin="0,2.5,2.5,2.5" Click="BtnEast_Click" Grid.Row="1" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnSouth" Content="View South Room" Margin="0,2.5,2.5,2.5" Click="BtnSouth_Click" Grid.Row="2" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnWest" Content="View West Room" Margin="0,2.5,2.5,2.5" Click="BtnWest_Click" Grid.Row="3" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnUp" Content="View Up Room" Margin="0,2.5,2.5,2.5" Click="BtnUp_Click" Grid.Row="4" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnDown" Content="View Down Room" Margin="0,2.5,2.5,2.5" Click="BtnDown_Click" Grid.Row="5" Grid.ColumnSpan="1"/>
+                    <Button x:Name="BtnDelete" Content="Delete Room" Margin="0,2.5" Click="BtnDelete_Click" Grid.Row="6" Grid.ColumnSpan="2"/>
+                    
+                    <Button x:Name="BtnNorthDoor" Content="Create North Door" Click="BtnNorth_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.Column="1"/>
+                    <Button x:Name="BtnEastDoor" Content="Create East Door" Margin="0,2.5,2.5,2.5" Click="BtnEast_Click" Grid.Row="1" Grid.Column="1"/>
+                    <Button x:Name="BtnSouthDoor" Content="Create South Door" Margin="0,2.5,2.5,2.5" Click="BtnSouth_Click" Grid.Row="2" Grid.Column="1"/>
+                    <Button x:Name="BtnWestDoor" Content="Create West Door" Margin="0,2.5,2.5,2.5" Click="BtnWest_Click" Grid.Row="3" Grid.Column="1"/>
+                    <Button x:Name="BtnUpDoor" Content="Create Up Door" Margin="0,2.5,2.5,2.5" Click="BtnUp_Click" Grid.Row="4" Grid.Column="1"/>
+                    <Button x:Name="BtnDownDoor" Content="Create Down Door" Margin="0,2.5,2.5,2.5" Click="BtnDown_Click" Grid.Row="5" Grid.Column="1"/>
+                </Grid>
+                <Grid x:Name="GrdItemButtons" Grid.Column="1">
+                    <Button x:Name="BtnNewItem" Content="New Item" VerticalAlignment="Top" Click="BtnNewItem_Click" Margin="10,0"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>
