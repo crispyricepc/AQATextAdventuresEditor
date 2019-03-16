@@ -96,7 +96,27 @@ namespace SkeletonGameMaker
 
         private void BtnNewDoor_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            Button btn = sender as Button;
+            if (btn.Content.ToString().ToLower().Contains("create"))
+            {
+                LocationDirection direction;
+
+                switch (btn.Name)
+                {
+                    case "BtnNorthDoor":
+                        direction = LocationDirection.North;
+                        break;
+                    case "BtnSouthDoor":
+                        direction = LocationDirection.South;
+                        break;
+                }
+
+
+            }
+            else if (btn.Content.ToString().ToLower().Contains("modify"))
+            {
+
+            }
         }
 
         private void TbDescription_TextChanged(object sender, TextChangedEventArgs e)
@@ -360,6 +380,10 @@ namespace SkeletonGameMaker
             }
         }
 
+        /// <summary>
+        /// Updates all of the controls in GrdDetails to reflect the newly selected room
+        /// </summary>
+        /// <param name="placeIndex"></param>
         private void UpdateGrdDetails(int placeIndex)
         {
             Room = Saves.Places[placeIndex];
@@ -382,11 +406,14 @@ namespace SkeletonGameMaker
             List<Item> items = Room.GetItems(Saves.Items);
             foreach (Item item in items)
             {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Content = item.Name;
-                lvi.Tag = item.ID;
+                if (item.GetDoorCounterpart(Saves.Items) == -1)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Content = item.Name;
+                    lvi.Tag = item.ID;
 
-                LvItemsList.Items.Add(lvi);
+                    LvItemsList.Items.Add(lvi);
+                }
             }
 
             GrdDetails.Visibility = Visibility.Visible;

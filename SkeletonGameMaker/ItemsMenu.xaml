@@ -10,7 +10,7 @@
         <ListView x:Name="LvItemsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvItemsList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="GvcolID">
+                    <GridViewColumn x:Name="GvcolID" Width="{Binding ActualWidth, ElementName=LvItemsList, Mode=OneWay}">
                         <GridViewColumnHeader Content="Item Names"/>
                     </GridViewColumn>
                 </GridView>
@@ -64,7 +64,7 @@
                     <ListView x:Name="LvStatus" Margin="0,31,10,0" SelectionChanged="LvStatus_SelectionChanged" Grid.Row="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn>
+                                <GridViewColumn Width="{Binding ActualWidth, ElementName=LvStatus}">
                                     <GridViewColumnHeader Content="Status List"/>
                                 </GridViewColumn>
                             </GridView>
@@ -76,7 +76,7 @@
                     <ListView x:Name="LvCommands" SelectionChanged="LvCommands_SelectionChanged" Margin="0,31,0,0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn>
+                                <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCommands, Mode=OneWay}">
                                     <GridViewColumnHeader Content="Commands List"/>
                                 </GridViewColumn>
                             </GridView>

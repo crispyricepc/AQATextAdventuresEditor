@@ -213,6 +213,27 @@ namespace SkeletonGameMaker
         {
             return items[items.GetIndexFromID(idToFind)];
         }
+
+        public static LocationDirection GetOpposite(this LocationDirection direction)
+        {
+            switch (direction)
+            {
+                case LocationDirection.North:
+                    return LocationDirection.South;
+                case LocationDirection.South:
+                    return LocationDirection.North;
+                case LocationDirection.East:
+                    return LocationDirection.West;
+                case LocationDirection.West:
+                    return LocationDirection.East;
+                case LocationDirection.Up:
+                    return LocationDirection.Down;
+                case LocationDirection.Down:
+                    return LocationDirection.Up;
+                default:
+                    throw new Exception("Not a valid direction");
+            }
+        }
     }
 
     public static class LocalConvert

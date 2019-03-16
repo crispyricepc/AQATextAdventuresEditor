@@ -10,7 +10,7 @@
         <ListView x:Name="LvRoomsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvRoomsList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="GvcolID" Width="157">
+                    <GridViewColumn x:Name="GvcolID" Width="{Binding ActualWidth, ElementName=LvRoomsList, Mode=OneWay}">
                         <GridViewColumnHeader Content="ID"/>
                     </GridViewColumn>
                 </GridView>
@@ -34,7 +34,7 @@
                     <ListView x:Name="LvItemsList" SelectionChanged="LvItemsList_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn x:Name="GvColItem">
+                                <GridViewColumn x:Name="GvColItem" Width="{Binding ActualWidth, ElementName=LvItemsList, Mode=OneWay}">
                                     <GridViewColumnHeader Content="Items"/>
                                 </GridViewColumn>
                             </GridView>
