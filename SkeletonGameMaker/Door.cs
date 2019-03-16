@@ -52,16 +52,13 @@ namespace SkeletonGameMaker
         public LocationDirection GetPrimaryDirection()
         {
             List<string[]> results = Saves.Items[Saves.Items.GetIndexFromID(PrimaryID)].GetResults();
-            if (results[0][0] == "north")
-            {
-                
-            }
+            return LocalConvert.ToLocationDirection(results[0][0]);
         }
 
         public LocationDirection GetSecondaryDirection()
         {
-            
-            LocalConvert.ToLocationDirection();
+            List<string[]> results = Saves.Items[Saves.Items.GetIndexFromID(SecondaryID)].GetResults();
+            return LocalConvert.ToLocationDirection(results[0][0]);
         }
     }
 }
