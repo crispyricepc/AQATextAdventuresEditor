@@ -20,22 +20,19 @@ namespace SkeletonGameMaker
     /// </summary>
     public partial class DoorMenu : UserControl
     {
-        int RoomID, TargetRoomID;
-        LocationDirection PrimaryRoomDirection;
-        LocationDirection SecondaryRoomDirection
+        public int RoomID, TargetRoomID;
+        public LocationDirection PrimaryRoomDirection;
+        public LocationDirection SecondaryRoomDirection
         {
             get
             {
                 return PrimaryRoomDirection.GetOpposite();
             }
         }
+        public event EventHandler OnDoorCreation;
 
-        public DoorMenu(int roomID, int targetRoomID, LocationDirection primaryRoomDirection)
+        public DoorMenu()
         {
-            RoomID = roomID;
-            TargetRoomID = targetRoomID;
-            PrimaryRoomDirection = primaryRoomDirection;
-
             InitializeComponent();
         }
 
@@ -79,6 +76,8 @@ namespace SkeletonGameMaker
 
                 Saves.Items.Add(primaryDoor);
                 Saves.Items.Add(secondaryDoor);
+
+                OnDoorCreation?.Invoke(sender, EventArgs.Empty);
             }
         }
     }

@@ -40,6 +40,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <local:DoorMenu x:Name="UcDoorMenu" Visibility="Collapsed"/>
                 </Grid>
                 <Grid x:Name="GrdRoomButtons" Grid.Column="2">
                     <Grid.RowDefinitions>

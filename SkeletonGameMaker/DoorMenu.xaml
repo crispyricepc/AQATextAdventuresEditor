@@ -4,23 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
-             mc:Ignorable="d" Width="255" Height="255">
+             mc:Ignorable="d"
+             MaxWidth="1024"
+             MaxHeight="1024">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="72"/>
-            <RowDefinition Height="145*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="52"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label x:Name="LbDoorName" Content="DoorName" Margin="5,5,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
             <Label x:Name="LbDoorStatus" Content="Status" Margin="5,36,5,0" VerticalAlignment="Top" Height="26" Width="42"/>
             <ComboBox x:Name="CbDoorStatus" Grid.Column="1" Margin="5,40,10,0" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="CbiDoorOpen" Content="Open" HorizontalAlignment="Left" Width="187"/>
-                <ComboBoxItem x:Name="CbiDoorClose" Content="Closed" HorizontalAlignment="Left" Width="187"/>
-                <ComboBoxItem x:Name="CbiDoorLocked" Content="Locked" HorizontalAlignment="Left" Width="187"/>
+                <ComboBoxItem x:Name="CbiDoorOpen" Content="Open" HorizontalAlignment="Left"/>
+                <ComboBoxItem x:Name="CbiDoorClose" Content="Closed" HorizontalAlignment="Left"/>
+                <ComboBoxItem x:Name="CbiDoorLocked" Content="Locked" HorizontalAlignment="Left"/>
             </ComboBox>
 
         </Grid>
@@ -34,7 +36,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="BtnDoorCreate" Content="Button" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="BtnDoorCreate_Click"/>
+            <Button x:Name="BtnDoorCreate" Content="Create/Modify" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="BtnDoorCreate_Click"/>
 
         </Grid>
 

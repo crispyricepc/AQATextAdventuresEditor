@@ -14,6 +14,7 @@ namespace SkeletonGameMaker
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             bool closed = false;
+            StringColors.Initialise();
             do
             {
                 MainWindow window = new MainWindow();

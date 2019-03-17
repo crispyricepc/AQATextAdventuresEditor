@@ -37,6 +37,7 @@ namespace SkeletonGameMaker
         public RoomsMenu()
         {
             InitializeComponent();
+            UcDoorMenu.OnDoorCreation += new EventHandler(UcDoorMenu_Closed);
         }
         
         private void UpdateList()
@@ -97,26 +98,47 @@ namespace SkeletonGameMaker
         private void BtnNewDoor_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
+
+            LocationDirection direction;
+
+            switch (btn.Name)
+            {
+                case "BtnNorthDoor":
+                    direction = LocationDirection.North;
+                    break;
+                case "BtnSouthDoor":
+                    direction = LocationDirection.South;
+                    break;
+                case "BtnEastDoor":
+                    direction = LocationDirection.East;
+                    break;
+                case "BtnWestDoor":
+                    direction = LocationDirection.West;
+                    break;
+                case "BtnUpDoor":
+                    direction = LocationDirection.Up;
+                    break;
+                case "BtnDownDoor":
+                    direction = LocationDirection.Down;
+                    break;
+                default:
+                    throw new Exception("Can't find button name");
+            }
+
             if (btn.Content.ToString().ToLower().Contains("create"))
             {
-                LocationDirection direction;
-
-                switch (btn.Name)
-                {
-                    case "BtnNorthDoor":
-                        direction = LocationDirection.North;
-                        break;
-                    case "BtnSouthDoor":
-                        direction = LocationDirection.South;
-                        break;
-                }
-
-
+                LvItemsList.Visibility = Visibility.Collapsed;
+                UcDoorMenu.Visibility = Visibility.Visible;
             }
             else if (btn.Content.ToString().ToLower().Contains("modify"))
             {
-
+                
             }
+        }
+        private void UcDoorMenu_Closed(object sender, EventArgs e)
+        {
+            UcDoorMenu.Visibility = Visibility.Collapsed;
+            LvItemsList.Visibility = Visibility.Visible;
         }
 
         private void TbDescription_TextChanged(object sender, TextChangedEventArgs e)
