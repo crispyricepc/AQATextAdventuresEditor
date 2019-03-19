@@ -130,7 +130,11 @@ namespace SkeletonGameMaker
 
             if (IsGettable)
             {
-                newCommand += ",get";
+                if (newCommand.Length != 0)
+                {
+                    newCommand += ",";
+                }
+                newCommand += "get";
             }
 
             Commands = newCommand;

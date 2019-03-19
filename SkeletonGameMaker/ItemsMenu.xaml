@@ -4,19 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
-             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450">
+             mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450"
+             MaxWidth="4096" MaxHeight="4096">
     <Grid>
         <Label x:Name="LblHeader" Content="Items" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <ListView x:Name="LvItemsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvItemsList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="GvcolID">
+                    <GridViewColumn x:Name="GvcolID" Width="{Binding ActualWidth, ElementName=LvItemsList, Mode=OneWay}">
                         <GridViewColumnHeader Content="Item Names"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid x:Name="GrdDetails" Margin="182,57,10,10" Visibility="Visible">
+        <Grid x:Name="GrdDetails" Margin="182,57,10,10" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -64,7 +65,7 @@
                     <ListView x:Name="LvStatus" Margin="0,31,10,0" SelectionChanged="LvStatus_SelectionChanged" Grid.Row="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn>
+                                <GridViewColumn Width="{Binding ActualWidth, ElementName=GrdStatus, Mode=OneWay}">
                                     <GridViewColumnHeader Content="Status List"/>
                                 </GridViewColumn>
                             </GridView>
@@ -76,7 +77,7 @@
                     <ListView x:Name="LvCommands" SelectionChanged="LvCommands_SelectionChanged" Margin="0,31,0,0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn>
+                                <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCommands, Mode=OneWay}">
                                     <GridViewColumnHeader Content="Commands List"/>
                                 </GridViewColumn>
                             </GridView>
