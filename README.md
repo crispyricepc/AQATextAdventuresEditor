@@ -11,3 +11,13 @@ The program is written in multiple different programming languages, but they all
 **Places** are the areas that the player can explore. Each place has a description and contains items
 
 There are many different types of **Items**, *doors*, *keys* and *containers* just name a few. Items are by far the most complicated element to the .gme file, they store lists called *status*, *result* and *commands* that are stored in plaintext, which means they need to be converted to and from their plaintext version each time.
+
+**Installation Instructions**
+
+The .exe file doesn't require any libraries just yet so these instructions are going to be short. Either:
+
+1. Double click the icon and paste the path into the box marked *enter filename*
+
+OR
+
+2. Right click a .gme file and choose *Open With* and choose the .exe
