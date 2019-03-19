@@ -132,17 +132,25 @@ namespace SkeletonGameMaker
                     throw new Exception("Can't find button name");
             }
 
+            UcDoorMenu.Visibility = Visibility.Collapsed;
+            UcDoorMenu.RoomID = Room.id;
+            UcDoorMenu.TargetRoomID = targetid;
+
             if (btn.Content.ToString().ToLower().Contains("create"))
             {
                 LvItemsList.Visibility = Visibility.Collapsed;
+                UcDoorMenu.Create = true;
                 UcDoorMenu.PrimaryRoomDirection = direction;
-                UcDoorMenu.RoomID = Room.id;
-                UcDoorMenu.TargetRoomID = targetid;
                 UcDoorMenu.Visibility = Visibility.Visible;
             }
             else if (btn.Content.ToString().ToLower().Contains("modify"))
             {
-                
+                LvItemsList.Visibility = Visibility.Collapsed;
+                UcDoorMenu.Create = false;
+                UcDoorMenu.PrimaryDoorID = Room.GetDoors()[direction].ID;
+                Place targetRoom = Saves.Places.GetObjectFromID(targetid);
+                UcDoorMenu.SecondaryDoorID = targetRoom.GetDoors()[direction.GetOpposite()].ID;
+                UcDoorMenu.Visibility = Visibility.Visible;
             }
         }
         private void UcDoorMenu_Closed(object sender, EventArgs e)
@@ -234,7 +242,7 @@ namespace SkeletonGameMaker
         /// <param name="room"></param>
         private void CheckForDoors(ref Place room)
         {
-            foreach (Item item in room.GetItems(Saves.Items))
+            foreach (Item item in room.GetItems())
             {
                 int doorCounterpart = item.GetDoorCounterpart(Saves.Items);
 
@@ -435,7 +443,7 @@ namespace SkeletonGameMaker
 
             // Update LvItemsList
             LvItemsList.Items.Clear();
-            List<Item> items = Room.GetItems(Saves.Items);
+            List<Item> items = Room.GetItems();
             foreach (Item item in items)
             {
                 if (item.GetDoorCounterpart(Saves.Items) == -1)

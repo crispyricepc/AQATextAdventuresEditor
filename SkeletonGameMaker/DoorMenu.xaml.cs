@@ -54,6 +54,7 @@ namespace SkeletonGameMaker
         }
 
         public int RoomID, TargetRoomID;
+        public int PrimaryDoorID, SecondaryDoorID;
         public LocationDirection PrimaryRoomDirection;
         public LocationDirection SecondaryRoomDirection
         {
@@ -62,6 +63,8 @@ namespace SkeletonGameMaker
                 return PrimaryRoomDirection.GetOpposite();
             }
         }
+        public bool Create;
+
         public event EventHandler OnDoorCreation;
 
         public DoorMenu()
@@ -69,16 +72,51 @@ namespace SkeletonGameMaker
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Updates the selection in the listview and the combobox to be the same as the door selected
+        /// </summary>
+        private void UpdateDetails()
+        {
+            Item primarydoor = Saves.Items.GetObjectFromID(PrimaryDoorID);
+            List<string> lowerCaseLv = new List<string>();
+            List<string> lowerCaseCb = new List<string>();
+            foreach (string dooritem in LvDoorColours.Items)
+            {
+                lowerCaseLv.Add(dooritem.ToLower());
+            }
+            foreach (ComboBoxItem status in CbDoorStatus.Items)
+            {
+                lowerCaseCb.Add(status.Content.ToString().ToLower());
+            }
+            string doorColour = primarydoor.GetDoorColour().ToLower();
+            LvDoorColours.SelectedIndex = lowerCaseLv.IndexOf(doorColour);
+            string doorStatus = primarydoor.GetStatus()[0];
+            CbDoorStatus.SelectedIndex = lowerCaseCb.IndexOf(doorStatus);
+        }
+
+        /// <summary>
+        /// Ensures everything is ready each time the control is visible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (!StringColors.IsInitialized)
+            if (IsVisible)
             {
-                StringColors.Initialise();
-            }
-            LvDoorColours.Items.Clear();
-            foreach (string color in StringColors.ColorsList)
-            {
-                LvDoorColours.Items.Add(color);
+                if (!StringColors.IsInitialized)
+                {
+                    StringColors.Initialise();
+                    LvDoorColours.Items.Clear();
+                    foreach (string color in StringColors.ColorsList)
+                    {
+                        LvDoorColours.Items.Add(color);
+                    }
+                }
+
+                if (PrimaryDoorID != 0 && SecondaryDoorID != 0)
+                {
+                    UpdateDetails();
+                }
             }
         }
 
@@ -100,10 +138,23 @@ namespace SkeletonGameMaker
             }
             else
             {
-                // Create the primary door
+                // Create/edit the primary door
                 Item primaryDoor = new Item();
                 Item secondaryDoor = new Item();
-                primaryDoor.ID = Saves.FindFreeID(2001, 9999, Saves.Items.GetIDs());
+                if (Create)
+                {
+                    primaryDoor.ID = Saves.FindFreeID(2001, 9999, Saves.Items.GetIDs());
+                    secondaryDoor.ID = primaryDoor.ID + 10000;
+                }
+                else if (PrimaryDoorID != 0 && SecondaryDoorID != 0)
+                {
+                    primaryDoor.ID = PrimaryDoorID;
+                    secondaryDoor.ID = SecondaryDoorID;
+                }
+                else
+                {
+                    throw new Exception("Pre-existing doors must be specified with an ID");
+                }
                 primaryDoor.Name = LvDoorColours.SelectedItem.ToString().ToLower() + " door";
                 primaryDoor.Description = "It is a " + primaryDoor.Name;
                 primaryDoor.Location = RoomID;
@@ -111,10 +162,10 @@ namespace SkeletonGameMaker
                 primaryDoor.Commands = "open,close";
                 primaryDoor.Results = PrimaryRoomDirection.LocToString().ToLower() + "," + TargetRoomID.ToString() +
                     ";" + PrimaryRoomDirection.LocToString().ToLower() + ",0";
+
                 // Create the secondary door
-                secondaryDoor.ID = primaryDoor.ID + 10000;
                 secondaryDoor.Name = primaryDoor.Name;
-                secondaryDoor.Description = "It is a " + secondaryDoor.Name;
+                secondaryDoor.Description = primaryDoor.Description;
                 secondaryDoor.Location = TargetRoomID;
                 secondaryDoor.Status = primaryDoor.Status;
                 secondaryDoor.Commands = primaryDoor.Commands;

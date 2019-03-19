@@ -184,6 +184,10 @@ namespace SkeletonGameMaker
                 }
             }
         }
+        public static Place GetObjectFromID(this List<Place> places, int idToFind)
+        {
+            return places[places.GetIndexFromID(idToFind)];
+        }
 
         public static int[] GetIDs(this List<Item> items)
         {

@@ -48,6 +48,17 @@ namespace SkeletonGameMaker
             }
             return -1;
         } // returns -1 if there is no door
+        public string GetDoorColour()
+        {
+            if (GetDoorCounterpart(Saves.Items) != -1)
+            {
+                string tmp = Name.TrimEnd(' ');
+                tmp = tmp.Remove(tmp.LastIndexOf(' '));
+                return tmp;
+            }
+
+            else return "";
+        }
 
         public List<string> GetStatus()
         {

@@ -44,10 +44,10 @@ namespace SkeletonGameMaker
             id = Saves.FindFreeID(1, 1999, idList);
         }
 
-        public List<Item> GetItems(List<Item> allItems)
+        public List<Item> GetItems()
         {
             List<Item> placeItems = new List<Item>();
-            foreach (Item item in allItems)
+            foreach (Item item in Saves.Items)
             {
                 if (item.Location == id)
                 {
@@ -55,6 +55,20 @@ namespace SkeletonGameMaker
                 }
             }
             return placeItems;
+        }
+        public Dictionary<LocationDirection, Item> GetDoors()
+        {
+            Dictionary<LocationDirection, Item> valuePairs = new Dictionary<LocationDirection, Item>();
+            foreach (Item item in GetItems())
+            {
+                if (item.GetDoorCounterpart(Saves.Items) != -1)
+                {
+                    LocationDirection direction = LocalConvert.ToLocationDirection(item.GetResults()[0][0]);
+                    valuePairs.Add(direction, item);
+                }
+            }
+
+            return valuePairs;
         }
 
         public int AddItem(int itemid, string name, string description, List<string> status, List<string> commands, List<string[]> results)
