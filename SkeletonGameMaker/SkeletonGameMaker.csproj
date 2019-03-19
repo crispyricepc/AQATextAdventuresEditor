@@ -115,7 +115,6 @@
       <DependentUpon>RoomsMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Saves.cs" />
-    <Compile Include="StringColors.cs" />
     <Compile Include="ValueConverters.cs" />
     <Page Include="DoorMenu.xaml">
       <SubType>Designer</SubType>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:SkeletonGameMaker"
              mc:Ignorable="d"
              MaxWidth="1024"
-             MaxHeight="1024">
+             MaxHeight="1024" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="72"/>
@@ -20,9 +20,9 @@
             <Label x:Name="LbDoorName" Content="DoorName" Margin="5,5,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
             <Label x:Name="LbDoorStatus" Content="Status" Margin="5,36,5,0" VerticalAlignment="Top" Height="26" Width="42"/>
             <ComboBox x:Name="CbDoorStatus" Grid.Column="1" Margin="5,40,10,0" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="CbiDoorOpen" Content="Open" HorizontalAlignment="Left"/>
-                <ComboBoxItem x:Name="CbiDoorClose" Content="Closed" HorizontalAlignment="Left"/>
-                <ComboBoxItem x:Name="CbiDoorLocked" Content="Locked" HorizontalAlignment="Left"/>
+                <ComboBoxItem x:Name="CbiDoorOpen" Content="Open" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=CbDoorStatus, Mode=OneWay}"/>
+                <ComboBoxItem x:Name="CbiDoorClose" Content="Close" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=CbDoorStatus, Mode=OneWay}"/>
+                <ComboBoxItem x:Name="CbiDoorLocked" Content="Locked" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=CbDoorStatus, Mode=OneWay}"/>
             </ComboBox>
 
         </Grid>

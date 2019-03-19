@@ -85,5 +85,32 @@ namespace SkeletonGameMaker
             int thisSideId = Saves.FindFreeID(2000, 9999, idList);
             int otherSideId = thisSideId + 10000;
         }
+
+        public void SetDirection(LocationDirection direction, int targetId)
+        {
+            switch (direction)
+            {
+                case LocationDirection.North:
+                    North = targetId;
+                    break;
+                case LocationDirection.South:
+                    South = targetId;
+                    break;
+                case LocationDirection.East:
+                    East = targetId;
+                    break;
+                case LocationDirection.West:
+                    West = targetId;
+                    break;
+                case LocationDirection.Up:
+                    Up = targetId;
+                    break;
+                case LocationDirection.Down:
+                    Down = targetId;
+                    break;
+                default:
+                    throw new Exception("Location invalid");
+            }
+        }
     }
 }

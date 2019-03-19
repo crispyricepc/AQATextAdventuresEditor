@@ -100,26 +100,33 @@ namespace SkeletonGameMaker
             Button btn = sender as Button;
 
             LocationDirection direction;
+            int targetid;
 
             switch (btn.Name)
             {
                 case "BtnNorthDoor":
                     direction = LocationDirection.North;
+                    targetid = North;
                     break;
                 case "BtnSouthDoor":
                     direction = LocationDirection.South;
+                    targetid = South;
                     break;
                 case "BtnEastDoor":
                     direction = LocationDirection.East;
+                    targetid = East;
                     break;
                 case "BtnWestDoor":
                     direction = LocationDirection.West;
+                    targetid = West;
                     break;
                 case "BtnUpDoor":
                     direction = LocationDirection.Up;
+                    targetid = Up;
                     break;
                 case "BtnDownDoor":
                     direction = LocationDirection.Down;
+                    targetid = Down;
                     break;
                 default:
                     throw new Exception("Can't find button name");
@@ -128,6 +135,9 @@ namespace SkeletonGameMaker
             if (btn.Content.ToString().ToLower().Contains("create"))
             {
                 LvItemsList.Visibility = Visibility.Collapsed;
+                UcDoorMenu.PrimaryRoomDirection = direction;
+                UcDoorMenu.RoomID = Room.id;
+                UcDoorMenu.TargetRoomID = targetid;
                 UcDoorMenu.Visibility = Visibility.Visible;
             }
             else if (btn.Content.ToString().ToLower().Contains("modify"))

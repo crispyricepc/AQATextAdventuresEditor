@@ -234,6 +234,26 @@ namespace SkeletonGameMaker
                     throw new Exception("Not a valid direction");
             }
         }
+        public static string LocToString(this LocationDirection direction)
+        {
+            switch (direction)
+            {
+                case LocationDirection.North:
+                    return "north";
+                case LocationDirection.South:
+                    return "south";
+                case LocationDirection.East:
+                    return "east";
+                case LocationDirection.West:
+                    return "west";
+                case LocationDirection.Up:
+                    return "up";
+                case LocationDirection.Down:
+                    return "down";
+                default:
+                    throw new Exception("Not a valid direction");
+            }
+        }
     }
 
     public static class LocalConvert

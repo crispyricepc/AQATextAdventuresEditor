@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace SkeletonGameMaker
 {
@@ -20,6 +21,38 @@ namespace SkeletonGameMaker
     /// </summary>
     public partial class DoorMenu : UserControl
     {
+        static class StringColors
+        {
+            public static List<string> ColorsList = new List<string>();
+            public static bool IsInitialized = false;
+
+            public static void Initialise()
+            {
+                IsInitialized = true;
+                Type colorType = typeof(System.Drawing.Color);
+                PropertyInfo[] propInfos = colorType.GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public);
+                foreach (PropertyInfo propInfo in propInfos)
+                {
+                    ColorsList.Add(AddSpacesToSentence(propInfo.Name));
+                }
+            }
+
+            private static string AddSpacesToSentence(string text)
+            {
+                if (string.IsNullOrWhiteSpace(text))
+                    return "";
+                StringBuilder newText = new StringBuilder(text.Length * 2);
+                newText.Append(text[0]);
+                for (int i = 1; i < text.Length; i++)
+                {
+                    if (char.IsUpper(text[i]) && text[i - 1] != ' ')
+                        newText.Append(' ');
+                    newText.Append(text[i]);
+                }
+                return newText.ToString();
+            }
+        }
+
         public int RoomID, TargetRoomID;
         public LocationDirection PrimaryRoomDirection;
         public LocationDirection SecondaryRoomDirection
@@ -34,6 +67,19 @@ namespace SkeletonGameMaker
         public DoorMenu()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (!StringColors.IsInitialized)
+            {
+                StringColors.Initialise();
+            }
+            LvDoorColours.Items.Clear();
+            foreach (string color in StringColors.ColorsList)
+            {
+                LvDoorColours.Items.Add(color);
+            }
         }
 
         private void BtnDoorCreate_Click(object sender, RoutedEventArgs e)
@@ -54,28 +100,47 @@ namespace SkeletonGameMaker
             }
             else
             {
+                // Create the primary door
                 Item primaryDoor = new Item();
                 Item secondaryDoor = new Item();
                 primaryDoor.ID = Saves.FindFreeID(2001, 9999, Saves.Items.GetIDs());
-                primaryDoor.Name = ((ListViewItem)LvDoorColours.SelectedItem).Content.ToString().ToLower() + " door";
+                primaryDoor.Name = LvDoorColours.SelectedItem.ToString().ToLower() + " door";
                 primaryDoor.Description = "It is a " + primaryDoor.Name;
                 primaryDoor.Location = RoomID;
                 primaryDoor.Status = ((ComboBoxItem)CbDoorStatus.SelectedItem).Content.ToString().ToLower();
                 primaryDoor.Commands = "open,close";
-                primaryDoor.Results = nameof(PrimaryRoomDirection).ToLower() + "," + TargetRoomID.ToString() +
-                    ";" + nameof(PrimaryRoomDirection).ToLower() + ",0";
-
+                primaryDoor.Results = PrimaryRoomDirection.LocToString().ToLower() + "," + TargetRoomID.ToString() +
+                    ";" + PrimaryRoomDirection.LocToString().ToLower() + ",0";
+                // Create the secondary door
                 secondaryDoor.ID = primaryDoor.ID + 10000;
                 secondaryDoor.Name = primaryDoor.Name;
                 secondaryDoor.Description = "It is a " + secondaryDoor.Name;
                 secondaryDoor.Location = TargetRoomID;
                 secondaryDoor.Status = primaryDoor.Status;
                 secondaryDoor.Commands = primaryDoor.Commands;
-                secondaryDoor.Results = nameof(SecondaryRoomDirection).ToLower() + "," + RoomID.ToString() +
-                    ";" + nameof(SecondaryRoomDirection).ToLower() + ",0";
+                secondaryDoor.Results = SecondaryRoomDirection.LocToString().ToLower() + "," + RoomID.ToString() +
+                    ";" + SecondaryRoomDirection.LocToString().ToLower() + ",0";
 
                 Saves.Items.Add(primaryDoor);
                 Saves.Items.Add(secondaryDoor);
+
+                switch (((ComboBoxItem)CbDoorStatus.SelectedItem).Content.ToString().ToLower())
+                {
+                    case "open":
+                        Saves.Places[Saves.Places.GetIndexFromID(RoomID)].SetDirection(PrimaryRoomDirection, TargetRoomID);
+                        Saves.Places[Saves.Places.GetIndexFromID(TargetRoomID)].SetDirection(SecondaryRoomDirection, RoomID);
+                        break;
+                    case "close":
+                        Saves.Places[Saves.Places.GetIndexFromID(RoomID)].SetDirection(PrimaryRoomDirection, 0);
+                        Saves.Places[Saves.Places.GetIndexFromID(TargetRoomID)].SetDirection(SecondaryRoomDirection, 0);
+                        break;
+                    case "locked":
+                        Saves.Places[Saves.Places.GetIndexFromID(RoomID)].SetDirection(PrimaryRoomDirection, 0);
+                        Saves.Places[Saves.Places.GetIndexFromID(TargetRoomID)].SetDirection(SecondaryRoomDirection, 0);
+                        break;
+                    default:
+                        throw new InputException(((ComboBoxItem)CbDoorStatus.SelectedItem).Content.ToString().ToLower() + " is not a valid status");
+                }
 
                 OnDoorCreation?.Invoke(sender, EventArgs.Empty);
             }
