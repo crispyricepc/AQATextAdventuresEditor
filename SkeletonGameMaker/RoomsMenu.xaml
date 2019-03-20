@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
-             mc:Ignorable="d" Loaded="UserControl_Loaded"
-             MaxWidth="4096" MaxHeight="4096">
+             mc:Ignorable="d"
+             MaxWidth="4096" MaxHeight="4096" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid x:Name="Grd">
         <Label x:Name="LblHeader" Content="Rooms" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <ListView x:Name="LvRoomsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvRoomsList_SelectionChanged">

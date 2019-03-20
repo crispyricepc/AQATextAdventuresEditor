@@ -50,12 +50,6 @@ namespace SkeletonGameMaker
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            GrdDetails.Visibility = Visibility.Hidden;
-            UpdateList();
-        }
-
         private void BtnNorth_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectionToDirection(North, Room, LocationDirection.North);
@@ -135,12 +129,12 @@ namespace SkeletonGameMaker
             UcDoorMenu.Visibility = Visibility.Collapsed;
             UcDoorMenu.RoomID = Room.id;
             UcDoorMenu.TargetRoomID = targetid;
+            UcDoorMenu.PrimaryRoomDirection = direction;
 
             if (btn.Content.ToString().ToLower().Contains("create"))
             {
                 LvItemsList.Visibility = Visibility.Collapsed;
                 UcDoorMenu.Create = true;
-                UcDoorMenu.PrimaryRoomDirection = direction;
                 UcDoorMenu.Visibility = Visibility.Visible;
             }
             else if (btn.Content.ToString().ToLower().Contains("modify"))
@@ -157,6 +151,7 @@ namespace SkeletonGameMaker
         {
             UcDoorMenu.Visibility = Visibility.Collapsed;
             LvItemsList.Visibility = Visibility.Visible;
+            UpdateGrdDetails(LvRoomsList.SelectedIndex);
         }
 
         private void TbDescription_TextChanged(object sender, TextChangedEventArgs e)
@@ -195,6 +190,12 @@ namespace SkeletonGameMaker
                     OnSelectItemClick?.Invoke(this, EventArgs.Empty);
                 }
             }
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            GrdDetails.Visibility = Visibility.Hidden;
+            UpdateList();
         }
 
         private int CreateNewRoom(Place prevRoom, LocationDirection direction)
@@ -293,7 +294,7 @@ namespace SkeletonGameMaker
                 BtnNorth.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnNorthDoor.Visibility = Visibility.Visible;
                 BtnNorth.Content = "View North Room";
-                if (Room.NorthDoor != -1)
+                if (Room.NorthDoor != 0)
                 {
                     BtnNorthDoor.Content = "Modify North Door";
                 }
@@ -315,7 +316,7 @@ namespace SkeletonGameMaker
                 BtnSouth.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnSouthDoor.Visibility = Visibility.Visible;
                 BtnSouth.Content = "View South Room";
-                if (Room.SouthDoor != -1)
+                if (Room.SouthDoor != 0)
                 {
                     BtnSouthDoor.Content = "Modify South Door";
                 }
@@ -337,7 +338,7 @@ namespace SkeletonGameMaker
                 BtnEast.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnEastDoor.Visibility = Visibility.Visible;
                 BtnEast.Content = "View East Room";
-                if (Room.EastDoor != -1)
+                if (Room.EastDoor != 0)
                 {
                     BtnEastDoor.Content = "Modify East Door";
                 }
@@ -359,7 +360,7 @@ namespace SkeletonGameMaker
                 BtnWest.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnWestDoor.Visibility = Visibility.Visible;
                 BtnWest.Content = "View West Room";
-                if (room.WestDoor != -1)
+                if (room.WestDoor != 0)
                 {
                     BtnWestDoor.Content = "Modify West Door";
                 }
@@ -381,7 +382,7 @@ namespace SkeletonGameMaker
                 BtnUp.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnUpDoor.Visibility = Visibility.Visible;
                 BtnUp.Content = "View Above Room";
-                if (room.UpDoor != -1)
+                if (room.UpDoor != 0)
                 {
                     BtnUpDoor.Content = "Modify Above Door";
                 }
@@ -403,7 +404,7 @@ namespace SkeletonGameMaker
                 BtnDown.SetValue(Grid.ColumnSpanProperty, 1);
                 BtnDownDoor.Visibility = Visibility.Visible;
                 BtnDown.Content = "View Below Room";
-                if (room.DownDoor != -1)
+                if (room.DownDoor != 0)
                 {
                     BtnDownDoor.Content = "Modify Below Door";
                 }

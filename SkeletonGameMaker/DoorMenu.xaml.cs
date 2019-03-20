@@ -141,20 +141,7 @@ namespace SkeletonGameMaker
                 // Create/edit the primary door
                 Item primaryDoor = new Item();
                 Item secondaryDoor = new Item();
-                if (Create)
-                {
-                    primaryDoor.ID = Saves.FindFreeID(2001, 9999, Saves.Items.GetIDs());
-                    secondaryDoor.ID = primaryDoor.ID + 10000;
-                }
-                else if (PrimaryDoorID != 0 && SecondaryDoorID != 0)
-                {
-                    primaryDoor.ID = PrimaryDoorID;
-                    secondaryDoor.ID = SecondaryDoorID;
-                }
-                else
-                {
-                    throw new Exception("Pre-existing doors must be specified with an ID");
-                }
+
                 primaryDoor.Name = LvDoorColours.SelectedItem.ToString().ToLower() + " door";
                 primaryDoor.Description = "It is a " + primaryDoor.Name;
                 primaryDoor.Location = RoomID;
@@ -172,8 +159,24 @@ namespace SkeletonGameMaker
                 secondaryDoor.Results = SecondaryRoomDirection.LocToString().ToLower() + "," + RoomID.ToString() +
                     ";" + SecondaryRoomDirection.LocToString().ToLower() + ",0";
 
-                Saves.Items.Add(primaryDoor);
-                Saves.Items.Add(secondaryDoor);
+                if (Create)
+                {
+                    primaryDoor.ID = Saves.FindFreeID(2001, 9999, Saves.Items.GetIDs());
+                    secondaryDoor.ID = primaryDoor.ID + 10000;
+                    Saves.Items.Add(primaryDoor);
+                    Saves.Items.Add(secondaryDoor);
+                }
+                else if (PrimaryDoorID != 0 && SecondaryDoorID != 0)
+                {
+                    primaryDoor.ID = PrimaryDoorID;
+                    secondaryDoor.ID = SecondaryDoorID;
+                    Saves.Items[Saves.Items.GetIndexFromID(primaryDoor.ID)] = primaryDoor;
+                    Saves.Items[Saves.Items.GetIndexFromID(secondaryDoor.ID)] = secondaryDoor;
+                }
+                else
+                {
+                    throw new Exception("Pre-existing doors must be specified with an ID");
+                }
 
                 switch (((ComboBoxItem)CbDoorStatus.SelectedItem).Content.ToString().ToLower())
                 {

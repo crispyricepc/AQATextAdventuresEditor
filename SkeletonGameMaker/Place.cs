@@ -44,6 +44,10 @@ namespace SkeletonGameMaker
             id = Saves.FindFreeID(1, 1999, idList);
         }
 
+        /// <summary>
+        /// Gets all the items in a place
+        /// </summary>
+        /// <returns>A list of items including doors</returns>
         public List<Item> GetItems()
         {
             List<Item> placeItems = new List<Item>();
@@ -64,13 +68,26 @@ namespace SkeletonGameMaker
                 if (item.GetDoorCounterpart(Saves.Items) != -1)
                 {
                     LocationDirection direction = LocalConvert.ToLocationDirection(item.GetResults()[0][0]);
-                    valuePairs.Add(direction, item);
+                    if (!valuePairs.ContainsKey(direction))
+                    {
+                        valuePairs.Add(direction, item);
+                    }
                 }
             }
 
             return valuePairs;
         }
 
+        /// <summary>
+        /// Adds an item to the Items list with the place as its location
+        /// </summary>
+        /// <param name="itemid"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="status"></param>
+        /// <param name="commands"></param>
+        /// <param name="results"></param>
+        /// <returns></returns>
         public int AddItem(int itemid, string name, string description, List<string> status, List<string> commands, List<string[]> results)
         {
             Item newItem = new Item();
@@ -92,14 +109,12 @@ namespace SkeletonGameMaker
 
             return newItem.ID;
         }
-
-        public void AddDoor(string name, string description, LocationDirection direction, Place placeToJoinWith)
-        {
-            int[] idList = Saves.Items.GetIDs();
-            int thisSideId = Saves.FindFreeID(2000, 9999, idList);
-            int otherSideId = thisSideId + 10000;
-        }
-
+        
+        /// <summary>
+        /// Sets a place's North/South/etc value to another Place's ID
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <param name="targetId"></param>
         public void SetDirection(LocationDirection direction, int targetId)
         {
             switch (direction)
