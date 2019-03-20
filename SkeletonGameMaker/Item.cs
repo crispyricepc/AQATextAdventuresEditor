@@ -62,9 +62,13 @@ namespace SkeletonGameMaker
 
         public List<string> GetStatus()
         {
-            string[] statusarray = Status.Split(',');
-            List<string> statuslist = statusarray.ToList();
-            return statuslist;
+            if (Status != "")
+            {
+                string[] statusarray = Status.Split(',');
+                List<string> statuslist = statusarray.ToList();
+                return statuslist;
+            }
+            else return new List<string>();
         }
         public List<string> GetCommands()
         {
