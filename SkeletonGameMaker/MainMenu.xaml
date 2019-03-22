@@ -8,15 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="StretchedButtonContent" TargetType="{x:Type Button}">
-                <Setter Property="ContentTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <Viewbox VerticalAlignment="Stretch" Margin="25">
-                                <ContentPresenter Content="{TemplateBinding Content}"/>
-                            </Viewbox>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="FontSize" Value="20"/>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -30,8 +22,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BtnSave" Content="Save" Margin="10,10,0,0" Click="BtnSave_Click" Grid.Column="1"/>
-            <Button x:Name="BtnLoad" Content="Load" Click="BtnLoad_Click" Margin="0,10,10,0"/>
+            <Button x:Name="BtnSave" Style="{StaticResource StretchedButtonContent}" Content="Save" Margin="10,10,0,0" Click="BtnSave_Click" Grid.Column="1"/>
+            <Button x:Name="BtnLoad" Style="{StaticResource StretchedButtonContent}" Content="Load" Click="BtnLoad_Click" Margin="0,10,10,0"/>
 
         </Grid>
         <Grid Grid.Row="0">
