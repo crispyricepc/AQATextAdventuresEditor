@@ -42,6 +42,7 @@ namespace SkeletonGameMaker
             UcMainMenu.Visibility = Visibility.Collapsed;
             UcRoomsMenu.Visibility = Visibility.Collapsed;
             UcItemsMenu.Visibility = Visibility.Collapsed;
+            UcCharactersMenu.Visibility = Visibility.Collapsed;
         }
 
         private void MainMenuBtnRooms_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace SkeletonGameMaker
         private void MainMenuBtnCharacters_Click(object sender, EventArgs e)
         {
             HideAll();
+            UcCharactersMenu.Visibility = Visibility.Visible;
         }
 
         private void MainMenuBtnItems_Click(object sender, EventArgs e)

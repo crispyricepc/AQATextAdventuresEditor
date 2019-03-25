@@ -96,6 +96,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Character.cs" />
+    <Compile Include="CharactersMenu.xaml.cs">
+      <DependentUpon>CharactersMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DoorMenu.xaml.cs">
       <DependentUpon>DoorMenu.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
     </Compile>
     <Compile Include="Saves.cs" />
     <Compile Include="ValueConverters.cs" />
+    <Page Include="CharactersMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DoorMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
