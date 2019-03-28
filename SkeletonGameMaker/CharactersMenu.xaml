@@ -11,7 +11,7 @@
             <ColumnDefinition Width="23*"/>
             <ColumnDefinition Width="77*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="LvCharacters" Margin="10,10,5,10">
+        <ListView x:Name="LvCharacters" Margin="10,10,5,10" SelectionChanged="LvCharacters_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCharacters, Mode=OneWay}">
@@ -20,7 +20,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1">
+        <Grid x:Name="GrdDetails" Grid.Column="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -28,7 +28,7 @@
             <Label Content="Name" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
             <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="23" Margin="47,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Location" HorizontalAlignment="Left" Margin="179,10,0,0" VerticalAlignment="Top" Height="26"/>
-            <ComboBox HorizontalAlignment="Left" Height="23" Margin="239,14,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox x:Name="CbLocation" HorizontalAlignment="Left" Height="23" Margin="239,14,0,0" VerticalAlignment="Top" Width="120"/>
             <Label Content="Description" HorizontalAlignment="Left" Margin="5,42,0,0" VerticalAlignment="Top" Height="26"/>
             <TextBox x:Name="TbDescription" Margin="5,68,10,5" TextWrapping="Wrap"/>
             <Label Content="Inventory" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1"/>

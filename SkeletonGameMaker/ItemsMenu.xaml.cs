@@ -147,6 +147,25 @@ namespace SkeletonGameMaker
             UpdateCommandList();
             TbDescription.Text = ItemSelected.Description;
             TbName.Text = ItemSelected.Name;
+            UpdateCbLocation();
+        }
+
+        private void UpdateCbLocation()
+        {
+            string loc;
+            if (ItemSelected.Location > 1000 && ItemSelected.Location < 2000)
+            {
+                loc = Saves.Characters[Saves.Characters.GetIndexFromID(ItemSelected.Location)].Name;
+            }
+            else if (ItemSelected.Location > 2000 && ItemSelected.Location < 10000)
+            {
+                loc = Saves.Items.GetObjectFromID(ItemSelected.Location).Name;
+            }
+            else
+            {
+                loc = ItemSelected.Location.ToString();
+            }
+            CbLocation.Text = loc;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -188,9 +207,30 @@ namespace SkeletonGameMaker
             }
         }
 
+        private void UpdateCbLocationItems()
+        {
+            CbLocation.Items.Clear();
+            foreach (Place room in Saves.Places)
+            {
+                CbLocation.Items.Add(room.id);
+            }
+            foreach (Item item in Saves.Items)
+            {
+                if (item.GetStatus().Contains("container"))
+                {
+                    CbLocation.Items.Add(item.Name);
+                }
+            }
+            foreach (Character character in Saves.Characters)
+            {
+                CbLocation.Items.Add(character.Name);
+            }
+        }
+
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             UpdateItemList();
+            UpdateCbLocationItems();
         }
 
         private void LvStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)

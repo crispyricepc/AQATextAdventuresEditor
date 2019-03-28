@@ -218,6 +218,22 @@ namespace SkeletonGameMaker
             return items[items.GetIndexFromID(idToFind)];
         }
 
+        public static int GetIndexFromID(this List<Character> characters, int idToFind)
+        {
+            for (int i = 0; i < characters.Count; i++)
+            {
+                if (characters[i].ID == idToFind)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public static Character GetObjectFromID(this List<Character> characters, int idToFind)
+        {
+            return characters[characters.GetIndexFromID(idToFind)];
+        }
+
         public static LocationDirection GetOpposite(this LocationDirection direction)
         {
             switch (direction)
