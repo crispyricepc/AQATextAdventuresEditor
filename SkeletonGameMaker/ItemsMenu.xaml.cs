@@ -185,6 +185,11 @@ namespace SkeletonGameMaker
             Saves.Items[index].Name = TbName.Text;
         }
 
+        /// <summary>
+        /// Writes to the selected item any new statuses that are added, and adds the status to the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -199,6 +204,11 @@ namespace SkeletonGameMaker
                     UpdateStatusList();
                     UpdateCommandList();
                 }
+
+                if (newStatus.ToLower() == "container")
+                {
+                    UpdateCbLocationItems();
+                }
             }
             catch (InputException ex)
             {
@@ -207,6 +217,9 @@ namespace SkeletonGameMaker
             }
         }
 
+        /// <summary>
+        /// Fills the combobox with all the valid containers, including rooms, items and characters
+        /// </summary>
         private void UpdateCbLocationItems()
         {
             CbLocation.Items.Clear();
@@ -227,10 +240,18 @@ namespace SkeletonGameMaker
             }
         }
 
+        /// <summary>
+        /// Executed when the items menu is opened
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            UpdateItemList();
-            UpdateCbLocationItems();
+            if (Visibility == Visibility.Visible)
+            {
+                UpdateItemList();
+                UpdateCbLocationItems();
+            }
         }
 
         private void LvStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
