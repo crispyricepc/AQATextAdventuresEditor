@@ -245,6 +245,18 @@ namespace SkeletonGameMaker
         {
             return characters[characters.GetIndexFromID(idToFind)];
         }
+        public static Character GetObjectFromName(this List<Character> characters, string nameToFind)
+        {
+            foreach (Character character in characters)
+            {
+                if (character.Name == nameToFind)
+                {
+                    return character;
+                }
+            }
+
+            throw new Exception("Character doesn't exist");
+        }
 
         public static LocationDirection GetOpposite(this LocationDirection direction)
         {

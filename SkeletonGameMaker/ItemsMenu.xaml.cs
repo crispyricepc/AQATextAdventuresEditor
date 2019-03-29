@@ -396,7 +396,14 @@ namespace SkeletonGameMaker
                 int locID;
                 if (!int.TryParse(location, out locID))
                 {
-                    locID = Saves.Items.GetObjectFromName(CbLocation.SelectedItem.ToString()).ID;
+                    try
+                    {
+                        locID = Saves.Items.GetObjectFromName(CbLocation.SelectedItem.ToString()).ID;
+                    }
+                    catch
+                    {
+                        locID = Saves.Characters.GetObjectFromName(CbLocation.SelectedItem.ToString()).ID;
+                    }
                 }
                 ItemSelected.Location = locID;
                 Saves.Items[Saves.Items.GetIndexFromID(ItemSelected.ID)] = ItemSelected;
