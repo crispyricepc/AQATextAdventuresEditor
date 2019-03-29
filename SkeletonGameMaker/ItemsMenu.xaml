@@ -17,23 +17,37 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid x:Name="GrdDetails" Margin="182,57,10,10" Visibility="Collapsed">
+        <Grid x:Name="GrdDetails" Margin="182,57,10,10" Visibility="Visible" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid x:Name="GrdDescription" Grid.Row="0" Grid.ColumnSpan="3">
-                <TextBox x:Name="TbDescription" TextChanged="TbDescription_TextChanged" TextWrapping="Wrap" Margin="0,54,0,10"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TbDescription" TextChanged="TbDescription_TextChanged" TextWrapping="Wrap" Margin="0,54,5,10" Grid.Column="0"/>
                 <Label x:Name="LbDescription" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,28,0,0"/>
                 <Label x:Name="LbName" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="27" Margin="47,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172" TextChanged="TbName_TextChanged"/>
-                <Button x:Name="BtnDeleteItem" Content="Delete Item" HorizontalAlignment="Right" Margin="407,0,0,0" VerticalAlignment="Top" Width="191" Height="25" Click="BtnDeleteItem_Click"/>
-                <Label x:Name="LbLocation" Content="Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="224,0,0,0"/>
-                <ComboBox x:Name="CbLocation" HorizontalAlignment="Left" Height="27" Margin="284,0,0,0" VerticalAlignment="Top" Width="172"/>
+                <Button x:Name="BtnDeleteItem" Content="Delete Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="191" Height="25" Click="BtnDeleteItem_Click" Grid.Column="1" Margin="0,3,0,0"/>
+                <Label x:Name="LbLocation" Content="Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,1,0,0" Grid.Column="1"/>
+                <ComboBox x:Name="CbLocation" Height="27" Margin="65,1,196,0" VerticalAlignment="Top" Grid.Column="1" SelectionChanged="CbLocation_SelectionChanged"/>
+                <ListView x:Name="LvContainerItems" Grid.Column="1" Margin="5,54,0,10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="{Binding ActualWidth, ElementName=LvContainerItems, Mode=OneWay}">
+                                <GridViewColumnHeader Content="Items"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label x:Name="LbContainerItems" Content="Contains" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,27,0,0" Grid.Column="1"/>
             </Grid>
             <Grid x:Name="GrdStatusCommandResult" Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>

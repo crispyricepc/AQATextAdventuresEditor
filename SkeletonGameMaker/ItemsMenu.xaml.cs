@@ -74,7 +74,7 @@ namespace SkeletonGameMaker
             }
             catch
             {
-                
+
             }
         }
         private void UpdateResults(string command)
@@ -94,6 +94,25 @@ namespace SkeletonGameMaker
                 i++;
             }
             TbResult.Text = result[1];
+        }
+
+        private void UpdateItemInventory()
+        {
+            LvContainerItems.Items.Clear();
+
+            if (ItemSelected.GetStatus().Contains("container"))
+            {
+                foreach (Item item in Saves.Items)
+                {
+                    if (item.Location == ItemSelected.ID)
+                    {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Content = item.Name;
+                        lvi.Tag = item.ID;
+                        LvContainerItems.Items.Add(lvi);
+                    }
+                }
+            }
         }
 
         public void ChangeSelection(int itemId, Place place)
@@ -148,6 +167,7 @@ namespace SkeletonGameMaker
             TbDescription.Text = ItemSelected.Description;
             TbName.Text = ItemSelected.Name;
             UpdateCbLocation();
+            UpdateItemInventory();
         }
 
         private void UpdateCbLocation()
@@ -360,6 +380,26 @@ namespace SkeletonGameMaker
             catch (InputException ex)
             {
                 MessageBox.Show("The program failed to update the text in the result field for the following reason:\n\n" + ex.Message, "Failed");
+            }
+        }
+
+        /// <summary>
+        /// Saves the changes to Saves.Items of the Item's new location
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CbLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbLocation.SelectedItem != null)
+            {
+                string location = CbLocation.SelectedItem.ToString();
+                int locID;
+                if (!int.TryParse(location, out locID))
+                {
+                    locID = Saves.Items.GetObjectFromName(CbLocation.SelectedItem.ToString()).ID;
+                }
+                ItemSelected.Location = locID;
+                Saves.Items[Saves.Items.GetIndexFromID(ItemSelected.ID)] = ItemSelected;
             }
         }
     }

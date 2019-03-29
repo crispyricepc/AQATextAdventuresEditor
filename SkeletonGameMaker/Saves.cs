@@ -217,6 +217,18 @@ namespace SkeletonGameMaker
         {
             return items[items.GetIndexFromID(idToFind)];
         }
+        public static Item GetObjectFromName(this List<Item> items, string nametofind)
+        {
+            foreach (Item item in items)
+            {
+                if (item.Name == nametofind)
+                {
+                    return item;
+                } 
+            }
+
+            throw new Exception("Item doesn't exist");
+        }
 
         public static int GetIndexFromID(this List<Character> characters, int idToFind)
         {
