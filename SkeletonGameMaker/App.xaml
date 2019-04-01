@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:SkeletonGameMaker"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="ButtonMenuLarge" TargetType="Button">
+            <Grid>
+                <Border BorderBrush="Black" BorderThickness="0" Background="#baeeff" Margin="0 0 5 5">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, StringFormat=0}"/>
+                </Border>
+            </Grid>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

@@ -13,6 +13,11 @@ namespace SkeletonGameMaker
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Saves.ApplicationDataPath = Path.Combine(appDataPath, @"test\");
+            if (!Directory.Exists(Saves.ApplicationDataPath))
+                Directory.CreateDirectory(Saves.ApplicationDataPath);
+
             bool closed = false;
             do
             {

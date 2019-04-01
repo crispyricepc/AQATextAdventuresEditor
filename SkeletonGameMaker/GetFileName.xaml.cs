@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace SkeletonGameMaker
 {
@@ -19,15 +20,33 @@ namespace SkeletonGameMaker
     /// </summary>
     public partial class GetFileName : Window
     {
+        public bool FileSelected;
+
         public GetFileName()
         {
             InitializeComponent();
+
+            FileSelected = false;
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
-            Saves.Filename = TbFilename.Text + ".gme";
             Close();
+        }
+
+        private void BtnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Skeleton Game Files (*.gme)|*.gme";
+            if (ofd.ShowDialog() == true)
+            {
+                if (ofd.FileName != null)
+                {
+                    FileSelected = true;
+                    Saves.Filename = ofd.FileName;
+                    Close();
+                }
+            }
         }
     }
 }

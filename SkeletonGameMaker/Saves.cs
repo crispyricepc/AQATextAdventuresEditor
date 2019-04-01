@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using System.IO;
+using Newtonsoft.Json;
 
 namespace SkeletonGameMaker
 {
@@ -15,6 +16,8 @@ namespace SkeletonGameMaker
     /// </summary>
     public static class Saves
     {
+        public static string ApplicationDataPath;
+
         public static string Filename;
 
         public static List<Character> Characters = new List<Character>();
@@ -145,6 +148,22 @@ namespace SkeletonGameMaker
             while (possibleID < upper + 1 && !found);
 
             return possibleID;
+        }
+
+        public static void AddToRecents(GameFileData gfd)
+        {
+            List<GameFileData> listGfd = new List<GameFileData>();
+            string recentsJson;
+            if (File.Exists(ApplicationDataPath + "recents.json"))
+            {
+                recentsJson = File.ReadAllText(ApplicationDataPath + "recents.json");
+                listGfd = JsonConvert.DeserializeObject<List<GameFileData>>(recentsJson);
+            }
+
+            listGfd.Add(gfd);
+
+            recentsJson = JsonConvert.SerializeObject(listGfd);
+            File.WriteAllText(ApplicationDataPath + "recents.json", recentsJson);
         }
     }
 

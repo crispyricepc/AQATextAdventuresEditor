@@ -5,13 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkeletonGameMaker"
         mc:Ignorable="d"
-        Title="Enter Filename" Height="140.917" Width="208.227" ResizeMode="NoResize">
+        Title="Skeleton Game Maker" Height="512" Width="800">
     <Grid>
-        <StackPanel FocusManager.FocusedElement="{Binding ElementName=TbFilename}">
-            <TextBox x:Name="TbFilename" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="BtnNew" Template="{StaticResource ButtonMenuLarge}" Content="New" Margin="10,10,5,0" VerticalAlignment="Top" Height="{Binding ActualWidth, ElementName=BtnNew, Mode=OneWay}"/>
+            <Button x:Name="BtnOpen" Template="{StaticResource ButtonMenuLarge}" Content="Open" Margin="10,5,5,0" VerticalAlignment="Top" Height="{Binding ActualWidth, ElementName=BtnOpen, Mode=OneWay}" Padding="1" Click="BtnOpen_Click"/>
         </StackPanel>
-        <Button x:Name="BtnOk" Content="Ok" HorizontalAlignment="Left" Margin="105,72,0,0" VerticalAlignment="Top" Width="75" Click="BtnOk_Click" IsDefault="True"/>
-        <Label x:Name="LbMessage" Content="Enter Filename" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="25,72,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
+        <Grid Grid.Column="1">
+            <Button x:Name="BtnOk" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="BtnOk_Click" IsDefault="True" Grid.Column="1" Height="20"/>
+            <Label x:Name="LbMessage" Content="Recents" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1"/>
+            <ListView Margin="5,41,10,35">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>
