@@ -16,7 +16,7 @@ There are many different types of **Items**, *doors*, *keys* and *containers* ju
 
 The .exe file doesn't require any libraries just yet so these instructions are going to be short. Either:
 
-1. Double click the icon and paste the path into the box marked *enter filename*
+1. Click the open button and select a valid .gme file
 
 OR
 
