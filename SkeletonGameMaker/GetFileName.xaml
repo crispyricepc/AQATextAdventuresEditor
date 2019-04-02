@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkeletonGameMaker"
         mc:Ignorable="d"
-        Title="Skeleton Game Maker" Height="512" Width="800">
+        Title="Skeleton Game Maker" Width="800" Height="512">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition MaxWidth="180"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
