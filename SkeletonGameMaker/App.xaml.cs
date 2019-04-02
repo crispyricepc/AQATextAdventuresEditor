@@ -18,32 +18,41 @@ namespace SkeletonGameMaker
             if (!Directory.Exists(Saves.ApplicationDataPath))
                 Directory.CreateDirectory(Saves.ApplicationDataPath);
 
-            bool closed = false;
+            bool closed = true;
             do
             {
+                bool fileSelected = false;
+
                 MainWindow window = new MainWindow();
                 if (e.Args.Length > 0)
                 {
                     Saves.Filename = e.Args[0];
+                    fileSelected = true;
                 }
                 else
                 {
                     GetFileName getFileName = new GetFileName();
                     getFileName.ShowDialog();
+                    fileSelected = getFileName.FileSelected;
                 }
 
-                try
+                if (fileSelected)
                 {
-                    Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
-                    window.ShowDialog();
-                    closed = true;
-                }
-                catch (FileNotFoundException ex)
-                {
-                    MessageBox.Show("File not found\n" + ex.Message, "Error");
+                    try
+                    {
+                        Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
+                        window.ShowDialog();
+                        closed = true;
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        MessageBox.Show("File not found\n" + ex.Message, "Error");
+                    }
                 }
             }
             while (!closed);
+
+            Current.Shutdown();
         }
     }
 }
