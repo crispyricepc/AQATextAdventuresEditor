@@ -154,16 +154,26 @@ namespace SkeletonGameMaker
         {
             List<GameFileData> listGfd = new List<GameFileData>();
             string recentsJson;
+
+            listGfd = GetRecents();
+
+            listGfd.Add(gfd);
+
+            recentsJson = JsonConvert.SerializeObject(listGfd, Formatting.Indented);
+            File.WriteAllText(ApplicationDataPath + "recents.json", recentsJson);
+        }
+
+        public static List<GameFileData> GetRecents()
+        {
+            List<GameFileData> listGfd = new List<GameFileData>();
+            string recentsJson;
             if (File.Exists(ApplicationDataPath + "recents.json"))
             {
                 recentsJson = File.ReadAllText(ApplicationDataPath + "recents.json");
                 listGfd = JsonConvert.DeserializeObject<List<GameFileData>>(recentsJson);
             }
 
-            listGfd.Add(gfd);
-
-            recentsJson = JsonConvert.SerializeObject(listGfd);
-            File.WriteAllText(ApplicationDataPath + "recents.json", recentsJson);
+            return listGfd;
         }
     }
 

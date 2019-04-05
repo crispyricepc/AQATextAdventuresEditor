@@ -94,8 +94,7 @@ namespace SkeletonGameMaker
 
         private void MainMenuBtnLoad_Click(object sender, EventArgs e)
         {
-            GetFileName getFileName = new GetFileName();
-            getFileName.ShowDialog();
+            
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)

@@ -21,12 +21,14 @@ namespace SkeletonGameMaker
     public partial class GetFileName : Window
     {
         public bool FileSelected;
+        public bool CreateNew;
 
         public GetFileName()
         {
             InitializeComponent();
 
             FileSelected = false;
+            CreateNew = false;
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
@@ -47,6 +49,34 @@ namespace SkeletonGameMaker
                     Close();
                 }
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<GameFileData> gfd = Saves.GetRecents();
+            LvRecents.ItemsSource = gfd;
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ColName.Width = LvRecents.ActualWidth / 2;
+            ColLastEdited.Width = LvRecents.ActualWidth / 2;
+        }
+
+        private void LvRecents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LvRecents.SelectedItems.Count == 1)
+            {
+                FileSelected = true;
+                Saves.Filename = ((GameFileData)LvRecents.SelectedItem).Path;
+                Close();
+            }
+        }
+
+        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNew = true;
+            Close();
         }
     }
 }

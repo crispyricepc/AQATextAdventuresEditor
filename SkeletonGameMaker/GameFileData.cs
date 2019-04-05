@@ -8,9 +8,9 @@ namespace SkeletonGameMaker
 {
     public class GameFileData
     {
-        public string Path;
-        public string Name;
-        public DateTime LastEdited;
+        public string Path { get; }
+        public string Name { get; }
+        public DateTime LastEdited { get; }
 
         public GameFileData(string path, string name, DateTime lastEdited)
         {

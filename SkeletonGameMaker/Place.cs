@@ -27,12 +27,12 @@ namespace SkeletonGameMaker
 
         public Place()
         {
-            NorthDoor = -1;
-            SouthDoor = -1;
-            EastDoor = -1;
-            WestDoor = -1;
-            UpDoor = -1;
-            DownDoor = -1;
+            NorthDoor = 0;
+            SouthDoor = 0;
+            EastDoor = 0;
+            WestDoor = 0;
+            UpDoor = 0;
+            DownDoor = 0;
 
             Description = "An empty room";
         }
