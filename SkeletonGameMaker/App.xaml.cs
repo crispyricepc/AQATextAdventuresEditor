@@ -60,7 +60,7 @@ namespace SkeletonGameMaker
                 }
                 else if (createNew)
                 {
-                    Saves.Filename = "newdoc.gme";
+                    Saves.Filename = "newgme.tmp";
                     Saves.Characters = new List<Character>();
                     Saves.Items = new List<Item>();
                     Saves.Places = new List<Place>();

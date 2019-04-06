@@ -4,20 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" MinWidth="800" MinHeight="450"
-             MaxWidth="4096" MaxHeight="4096">
+             MaxWidth="4096" MaxHeight="4096" SizeChanged="UserControl_SizeChanged">
     <Grid>
-        <Label x:Name="LblHeader" Content="Items" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <ListView x:Name="LvItemsList" HorizontalAlignment="Left" Margin="10,57,0,10" Width="167" SelectionChanged="LvItemsList_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="GvcolID" Width="{Binding ActualWidth, ElementName=LvItemsList, Mode=OneWay}">
-                        <GridViewColumnHeader Content="Item Names"/>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Grid x:Name="GrdDetails" Margin="182,57,10,10" Visibility="Visible" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="LblHeader" Style="{DynamicResource MaterialDesignTitleTextBlock}" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top">Items</TextBlock>
+        <materialDesign:Card Grid.Column="0" VerticalAlignment="Stretch" Margin="10,50,5,10">
+            <ListView x:Name="LvItemsList" Margin="10" SelectionChanged="LvItemsList_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="GvcolID">
+                            <GridViewColumnHeader Content="Item Names"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
+        <Grid x:Name="GrdDetails" Margin="5,50,10,10" Visibility="Visible" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -27,23 +34,31 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="TbDescription" TextChanged="TbDescription_TextChanged" TextWrapping="Wrap" Margin="0,54,5,10" Grid.Column="0"/>
-                <Label x:Name="LbDescription" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,28,0,0"/>
-                <Label x:Name="LbName" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="27" Margin="47,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172" TextChanged="TbName_TextChanged"/>
-                <Button x:Name="BtnDeleteItem" Content="Delete Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="191" Height="25" Click="BtnDeleteItem_Click" Grid.Column="1" Margin="0,3,0,0"/>
-                <Label x:Name="LbLocation" Content="Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,1,0,0" Grid.Column="1"/>
-                <ComboBox x:Name="CbLocation" Height="27" Margin="65,1,196,0" VerticalAlignment="Top" Grid.Column="1" SelectionChanged="CbLocation_SelectionChanged"/>
-                <ListView x:Name="LvContainerItems" Grid.Column="1" Margin="5,54,0,10">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="{Binding ActualWidth, ElementName=LvContainerItems, Mode=OneWay}">
-                                <GridViewColumnHeader Content="Items"/>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                <Label x:Name="LbContainerItems" Content="Contains" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,27,0,0" Grid.Column="1"/>
+                <materialDesign:Card Grid.Column="0" VerticalAlignment="Stretch" Margin="0,0,5,5">
+                    <Grid Margin="10">
+                        <TextBox x:Name="TbDescription" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}" TextChanged="TbDescription_TextChanged" TextWrapping="Wrap" Margin="0,63,5,0" VerticalContentAlignment="Stretch" Padding="0,-20,0,0"/>
+                        <Label x:Name="LbDescription" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,32,0,0"/>
+                        <Label x:Name="LbName" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                        <TextBox x:Name="TbName" Height="27" Margin="49,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="TbName_TextChanged" VerticalContentAlignment="Top"/>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Column="1" VerticalAlignment="Stretch" Margin="5,0,0,5">
+                    <Grid Margin="10">
+                        <Button x:Name="BtnDeleteItem" Content="Delete Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="191" Height="25" Click="BtnDeleteItem_Click" Margin="0,3,0,0"/>
+                        <Label x:Name="LbLocation" Content="Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,1,0,0" Grid.Column="1"/>
+                        <ComboBox x:Name="CbLocation" Height="27" Margin="65,0,196,0" VerticalAlignment="Top" Grid.Column="1" SelectionChanged="CbLocation_SelectionChanged"/>
+                        <ListView x:Name="LvContainerItems" Margin="0,63,0,0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="GvColContainer">
+                                        <GridViewColumnHeader Content="Items"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Label x:Name="LbContainerItems" Content="Contains" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,32,0,0"/>
+                    </Grid>
+                </materialDesign:Card>
             </Grid>
             <Grid x:Name="GrdStatusCommandResult" Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -51,86 +66,92 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="GrdStatus" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition x:Name="RowStatusTop"/>
-                        <RowDefinition x:Name="RowStatusBottom" Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="LbStatus" Content="Add New Status" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Height="26" Width="94"/>
-                    <ComboBox x:Name="CbStatus" VerticalAlignment="Top" SelectionChanged="CbStatus_SelectionChanged" Margin="99,4,10,0" Grid.Row="0" Height="22">
-                        <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
-                        <ComboBoxItem Content="Tiny"/>
-                        <ComboBoxItem Content="Small"/>
-                        <ComboBoxItem Content="Medium"/>
-                        <ComboBoxItem Content="Large"/>
-                        <ComboBoxItem Content="Edible"/>
-                        <ComboBoxItem Content="Fragile"/>
-                        <ComboBoxItem Content="Usable"/>
-                        <ComboBoxItem Content="Gettable"/>
-                        <ComboBoxItem Content="Water"/>
-                        <ComboBoxItem Content="Liquid"/>
-                        <ComboBoxItem Content="Container"/>
-                        <ComboBoxItem Content="Horrible"/>
-                        <ComboBoxItem Content="Occupied"/>
-                        <ComboBoxItem Content="Off"/>
-                        <ComboBoxItem Content="Powered"/>
-                        <ComboBoxItem Content="Lightable"/>
-                        <ComboBoxItem Content="Weapon"/>
+                <materialDesign:Card Margin="0,5,5,0" VerticalAlignment="Stretch">
+                    <Grid x:Name="GrdStatus" Grid.Column="0" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowStatusTop"/>
+                            <RowDefinition x:Name="RowStatusBottom" Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="LbStatus" Content="Add New Status" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Height="26" Width="99"/>
+                        <ComboBox x:Name="CbStatus" VerticalAlignment="Top" SelectionChanged="CbStatus_SelectionChanged" Margin="104,0,10,0" Grid.Row="0">
+                            <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
+                            <ComboBoxItem Content="Tiny"/>
+                            <ComboBoxItem Content="Small"/>
+                            <ComboBoxItem Content="Medium"/>
+                            <ComboBoxItem Content="Large"/>
+                            <ComboBoxItem Content="Edible"/>
+                            <ComboBoxItem Content="Fragile"/>
+                            <ComboBoxItem Content="Usable"/>
+                            <ComboBoxItem Content="Gettable"/>
+                            <ComboBoxItem Content="Water"/>
+                            <ComboBoxItem Content="Liquid"/>
+                            <ComboBoxItem Content="Container"/>
+                            <ComboBoxItem Content="Horrible"/>
+                            <ComboBoxItem Content="Occupied"/>
+                            <ComboBoxItem Content="Off"/>
+                            <ComboBoxItem Content="Powered"/>
+                            <ComboBoxItem Content="Lightable"/>
+                            <ComboBoxItem Content="Weapon"/>
 
-                    </ComboBox>
-                    <ListView x:Name="LvStatus" Margin="0,31,10,0" SelectionChanged="LvStatus_SelectionChanged" Grid.Row="0">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="{Binding ActualWidth, ElementName=GrdStatus, Mode=OneWay}">
-                                    <GridViewColumnHeader Content="Status List"/>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Button x:Name="BtnDeleteStatus" Content="Delete Status" Margin="0,2.5,10,2.5" Visibility="Collapsed" Click="BtnDeleteStatus_Click" Grid.Row="1" Height="40"/>
-                </Grid>
-                <Grid x:Name="GrdCommand" Grid.Column="1">
-                    <ListView x:Name="LvCommands" SelectionChanged="LvCommands_SelectionChanged" Margin="0,31,0,0">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCommands, Mode=OneWay}">
-                                    <GridViewColumnHeader Content="Commands List"/>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Label x:Name="LbCommands" Content="Add New Command" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CbCommands" VerticalAlignment="Top" SelectionChanged="CbCommands_SelectionChanged" Margin="122,4,0,0">
-                        <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
-                        <ComboBoxItem Content="Get"/>
-                        <ComboBoxItem Content="Use"/>
-                        <ComboBoxItem Content="Read"/>
-                        <ComboBoxItem Content="Move"/>
-                        <ComboBoxItem Content="Open"/>
-                        <ComboBoxItem Content="Close"/>
-                        <ComboBoxItem Content="Read"/>
+                        </ComboBox>
+                        <ListView x:Name="LvStatus" Margin="0,31,10,0" SelectionChanged="LvStatus_SelectionChanged" Grid.Row="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="GvColStatus">
+                                        <GridViewColumnHeader Content="Status List"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button x:Name="BtnDeleteStatus" Content="Delete Status" Margin="0,2.5,10,2.5" Visibility="Collapsed" Click="BtnDeleteStatus_Click" Grid.Row="1" Height="40"/>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Column="1" VerticalAlignment="Stretch" Margin="5,5,5,0">
+                    <Grid x:Name="GrdCommand" Margin="10">
+                        <ListView x:Name="LvCommands" SelectionChanged="LvCommands_SelectionChanged" Margin="0,31,0,0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="GvColCommands">
+                                        <GridViewColumnHeader Content="Commands List"/>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Label x:Name="LbCommands" Content="Add New Command" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="CbCommands" VerticalAlignment="Top" SelectionChanged="CbCommands_SelectionChanged" Margin="131,0,0,0">
+                            <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
+                            <ComboBoxItem Content="Get"/>
+                            <ComboBoxItem Content="Use"/>
+                            <ComboBoxItem Content="Read"/>
+                            <ComboBoxItem Content="Move"/>
+                            <ComboBoxItem Content="Open"/>
+                            <ComboBoxItem Content="Close"/>
+                            <ComboBoxItem Content="Read"/>
 
-                    </ComboBox>
-                </Grid>
-                <Grid x:Name="GrdCommandResult" Grid.Column="2" Visibility="Visible" Margin="5,0,0,30">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Button x:Name="BtnDeleteCommand" Content="Delete Command" Click="BtnDeleteCommand_Click" Margin="0,5,0,0" Grid.Row="2" Height="40"/>
-                    <Label x:Name="LbCommandDescription" Content="Command Result" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0"/>
-                    <ComboBox x:Name="CbResults" VerticalAlignment="Top" SelectionChanged="CbResults_SelectionChanged" Margin="105,4,0,0" Grid.Row="0">
-                        <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
-                        <ComboBoxItem Content="Say"/>
-                        <ComboBoxItem Content="Go"/>
-                        <ComboBoxItem Content="Move"/>
-                        <ComboBoxItem Content="Use"/>
-                        <ComboBoxItem Content="Roll"/>
-                        <ComboBoxItem Content="LockUnlock"/>
+                        </ComboBox>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card x:Name="GrdCommandResult" Grid.Column="2" VerticalAlignment="Stretch" Margin="5,5,0,0">
+                    <Grid Visibility="Visible" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="BtnDeleteCommand" Content="Delete Command" Click="BtnDeleteCommand_Click" Margin="0,5,0,0" Grid.Row="2" Height="40"/>
+                        <Label x:Name="LbCommandDescription" Content="Command Result" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0"/>
+                        <ComboBox x:Name="CbResults" VerticalAlignment="Top" SelectionChanged="CbResults_SelectionChanged" Margin="113,0,0,0" Grid.Row="0">
+                            <ComboBoxItem Content="--SELECT--" IsSelected="True"/>
+                            <ComboBoxItem Content="Say"/>
+                            <ComboBoxItem Content="Go"/>
+                            <ComboBoxItem Content="Move"/>
+                            <ComboBoxItem Content="Use"/>
+                            <ComboBoxItem Content="Roll"/>
+                            <ComboBoxItem Content="LockUnlock"/>
 
-                    </ComboBox>
-                    <TextBox x:Name="TbResult" TextChanged="TbResult_TextChanged" TextWrapping="Wrap" Margin="0,31,0,0" Grid.Row="0"/>
-                </Grid>
+                        </ComboBox>
+                        <TextBox x:Name="TbResult" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}" TextChanged="TbResult_TextChanged" TextWrapping="Wrap" Margin="0,33,0,0" Grid.Row="0" VerticalContentAlignment="Stretch" Padding="0,-20,0,0"/>
+                    </Grid>
+                </materialDesign:Card>
             </Grid>
         </Grid>
     </Grid>

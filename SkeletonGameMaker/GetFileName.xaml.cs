@@ -59,8 +59,8 @@ namespace SkeletonGameMaker
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ColName.Width = LvRecents.ActualWidth / 2;
-            ColLastEdited.Width = LvRecents.ActualWidth / 2;
+            ColName.Width = (LvRecents.ActualWidth - 40) / 2;
+            ColLastEdited.Width = (LvRecents.ActualWidth - 40) / 2;
         }
 
         private void LvRecents_SelectionChanged(object sender, SelectionChangedEventArgs e)

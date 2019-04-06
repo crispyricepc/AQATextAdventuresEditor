@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace SkeletonGameMaker
 {
@@ -23,15 +24,13 @@ namespace SkeletonGameMaker
         public MainWindow()
         {
             InitializeComponent();
+
+            RbFile.IsChecked = true;
         }
 
         private void WindowMain_Loaded(object sender, RoutedEventArgs e)
         {
-            UcMainMenu.OnBtnRoomsClick += new EventHandler(MainMenuBtnRooms_Click);
-            UcMainMenu.OnBtnCharactersClick += new EventHandler(MainMenuBtnCharacters_Click);
-            UcMainMenu.OnBtnItemsClick += new EventHandler(MainMenuBtnItems_Click);
             UcMainMenu.OnBtnSaveClick += new EventHandler(MainMenuBtnSave_Click);
-            UcMainMenu.OnBtnLoadClick += new EventHandler(MainMenuBtnLoad_Click);
 
             UcRoomsMenu.OnBtnNewItemClick += new EventHandler(RoomsMenuBtnCreateNewItem_Click);
             UcRoomsMenu.OnSelectItemClick += new EventHandler(RoomsMenuBtnViewItem_Click);
@@ -43,24 +42,6 @@ namespace SkeletonGameMaker
             UcRoomsMenu.Visibility = Visibility.Collapsed;
             UcItemsMenu.Visibility = Visibility.Collapsed;
             UcCharactersMenu.Visibility = Visibility.Collapsed;
-        }
-
-        private void MainMenuBtnRooms_Click(object sender, EventArgs e)
-        {
-            HideAll();
-            UcRoomsMenu.Visibility = Visibility.Visible;
-        }
-
-        private void MainMenuBtnCharacters_Click(object sender, EventArgs e)
-        {
-            HideAll();
-            UcCharactersMenu.Visibility = Visibility.Visible;
-        }
-
-        private void MainMenuBtnItems_Click(object sender, EventArgs e)
-        {
-            HideAll();
-            UcItemsMenu.Visibility = Visibility.Visible;
         }
 
         private void RoomsMenuBtnCreateNewItem_Click(object sender, EventArgs e)
@@ -92,23 +73,36 @@ namespace SkeletonGameMaker
             }
         }
 
-        private void MainMenuBtnLoad_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BtnHome_Click(object sender, RoutedEventArgs e)
-        {
-            HideAll();
-            UcMainMenu.Visibility = Visibility.Visible;
-        }
-
         private void WindowMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
                 MainMenuBtnSave_Click(sender, EventArgs.Empty);
             }
+        }
+
+        private void RbRooms_Checked(object sender, RoutedEventArgs e)
+        {
+            HideAll();
+            UcRoomsMenu.Visibility = Visibility.Visible;
+        }
+
+        private void RbItems_Checked(object sender, RoutedEventArgs e)
+        {
+            HideAll();
+            UcItemsMenu.Visibility = Visibility.Visible;
+        }
+
+        private void RbCharacters_Checked(object sender, RoutedEventArgs e)
+        {
+            HideAll();
+            UcCharactersMenu.Visibility = Visibility.Visible;
+        }
+
+        private void RbFile_Checked(object sender, RoutedEventArgs e)
+        {
+            HideAll();
+            UcMainMenu.Visibility = Visibility.Visible;
         }
     }
 }

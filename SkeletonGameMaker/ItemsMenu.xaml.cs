@@ -190,6 +190,7 @@ namespace SkeletonGameMaker
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            GrdDetails.Visibility = Visibility.Collapsed;
             UpdateItemList();
         }
 
@@ -407,6 +408,17 @@ namespace SkeletonGameMaker
                 }
                 ItemSelected.Location = locID;
                 Saves.Items[Saves.Items.GetIndexFromID(ItemSelected.ID)] = ItemSelected;
+            }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (GrdDetails.Visibility != Visibility.Collapsed)
+            {
+                GvcolID.Width = LvItemsList.ActualWidth - 40;
+                GvColStatus.Width = LvStatus.ActualWidth - 40;
+                GvColCommands.Width = LvCommands.ActualWidth - 40;
+                GvColContainer.Width = LvContainerItems.ActualWidth - 40;
             }
         }
     }

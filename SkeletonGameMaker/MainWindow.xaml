@@ -4,13 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkeletonGameMaker"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="Editor" Height="486" Width="810" Loaded="WindowMain_Loaded" MinWidth="900" MinHeight="500" KeyDown="WindowMain_KeyDown">
+        Title="Editor" Height="486" Width="810" Loaded="WindowMain_Loaded" MinWidth="900" MinHeight="500" KeyDown="WindowMain_KeyDown" WindowState="Maximized" Icon="occult-icons_skull-512.ico">
     <Grid x:Name="GrdWindow">
-        <local:MainMenu x:Name="UcMainMenu" Visibility="Visible" Height="Auto" Width="Auto"/>
-        <local:RoomsMenu x:Name="UcRoomsMenu" Visibility="Collapsed" Width="Auto" Height="Auto"/>
-        <local:ItemsMenu x:Name="UcItemsMenu" Visibility="Collapsed"/>
-        <local:CharactersMenu x:Name="UcCharactersMenu" Visibility="Collapsed"/>
-        <Button x:Name="BtnHome" Content="Home" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="BtnHome_Click"/>
+        <materialDesign:DrawerHost x:Name="DhFile">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Margin="16">
+                    <TextBlock Margin="4" HorizontalAlignment="Center">LEFT FIELD</TextBlock>
+                    <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Margin="4" HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                        CLOSE THIS
+                    </Button>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+        </materialDesign:DrawerHost>
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <materialDesign:ColorZone Mode="PrimaryMid" VerticalContentAlignment="Center" DockPanel.Dock="Top">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <RadioButton x:Name="RbFile" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="5" IsChecked="False" Content="File" Checked="RbFile_Checked"/>
+                        <RadioButton x:Name="RbRooms" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="5" IsChecked="False" Content="Rooms" Checked="RbRooms_Checked"/>
+                        <RadioButton x:Name="RbItems" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="5" IsChecked="False" Content="Items" Checked="RbItems_Checked"/>
+                        <RadioButton x:Name="RbCharacters" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="5" IsChecked="False" Content="Characters" Checked="RbCharacters_Checked" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:ColorZone>
+            <Grid x:Name="GrdMenus" Margin="0">
+                <local:MainMenu x:Name="UcMainMenu" Visibility="Visible" Height="Auto" Width="Auto"/>
+                <local:RoomsMenu x:Name="UcRoomsMenu" Visibility="Collapsed" Width="Auto" Height="Auto"/>
+                <local:ItemsMenu x:Name="UcItemsMenu" Visibility="Collapsed"/>
+                <local:CharactersMenu x:Name="UcCharactersMenu" Visibility="Collapsed"/>
+            </Grid>
+        </DockPanel>
     </Grid>
 </Window>
