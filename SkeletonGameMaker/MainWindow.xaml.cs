@@ -36,6 +36,9 @@ namespace SkeletonGameMaker
             UcRoomsMenu.OnSelectItemClick += new EventHandler(RoomsMenuBtnViewItem_Click);
         }
 
+        /// <summary>
+        /// Hides all controls except the top menu bar
+        /// </summary>
         private void HideAll()
         {
             UcMainMenu.Visibility = Visibility.Collapsed;
