@@ -11,6 +11,11 @@ namespace SkeletonGameMaker
 {
     public partial class App : Application
     {
+        /// <summary>
+        /// Ensures the correct files exist in AppData before continuing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">This is passed into SelectFile</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -22,65 +27,23 @@ namespace SkeletonGameMaker
             SelectFile(e);
         }
 
+        /// <summary>
+        /// Picks a file based on whether the program was launched from a .gme or from a .exe
+        /// </summary>
+        /// <param name="e">If empty, the GetFileName Window is shown</param>
         public void SelectFile(StartupEventArgs e)
         {
-            bool closed = true;
-            do
+            bool fileSelected = false;
+            bool createNew = false;
+
+            if (e.Args.Length > 0)
             {
-                bool fileSelected = false;
-                bool createNew = false;
-
-                MainWindow window = new MainWindow();
-                if (e.Args.Length > 0)
-                {
-                    Saves.Filename = e.Args[0];
-                    fileSelected = true;
-                }
-                else
-                {
-                    GetFileName getFileName = new GetFileName();
-                    getFileName.ShowDialog();
-                    fileSelected = getFileName.FileSelected;
-                    createNew = getFileName.CreateNew;
-                }
-
-                if (fileSelected)
-                {
-                    try
-                    {
-                        Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
-                        Saves.AddToRecents(new GameFileData(Saves.Filename, Path.GetFileName(Saves.Filename), DateTime.Now));
-                        window.ShowDialog();
-                        closed = true;
-                    }
-                    catch (FileNotFoundException ex)
-                    {
-                        MessageBox.Show("File not found\n" + ex.Message, "Error");
-                    }
-                }
-                else if (createNew)
-                {
-                    Saves.Filename = "newgme.tmp";
-                    Saves.Characters = new List<Character>();
-                    Saves.Items = new List<Item>();
-                    Saves.Places = new List<Place>();
-
-                    Place startRoom = new Place();
-                    startRoom.id = Saves.FindFreeID(1, 1000, Saves.Places.GetIDs());
-                    startRoom.Description = "A new room";
-                    startRoom.North = 0;
-                    startRoom.South = 0;
-                    startRoom.East = 0;
-                    startRoom.West = 0;
-                    startRoom.Up = 0;
-                    startRoom.Down = 0;
-                    Saves.Places.Add(startRoom);
-
-                    window.ShowDialog();
-                    closed = true;
-                }
+                Saves.Filename = e.Args[0];
+                fileSelected = true;
             }
-            while (!closed);
+
+            MainWindow window = new MainWindow();
+            window.StartUp(fileSelected, createNew);
 
             Current.Shutdown();
         }

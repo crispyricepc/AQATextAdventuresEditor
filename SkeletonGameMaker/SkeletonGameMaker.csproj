@@ -112,9 +112,6 @@
       <DependentUpon>DoorMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameFileData.cs" />
-    <Compile Include="GetFileName.xaml.cs">
-      <DependentUpon>GetFileName.xaml</DependentUpon>
-    </Compile>
     <Compile Include="InputException.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemsMenu.xaml.cs">
@@ -134,10 +131,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DoorMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GetFileName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

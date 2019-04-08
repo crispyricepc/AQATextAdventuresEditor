@@ -13,21 +13,11 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="Editor" Height="486" Width="810" Loaded="WindowMain_Loaded" MinWidth="900" MinHeight="500" KeyDown="WindowMain_KeyDown" WindowState="Maximized" Icon="occult-icons_skull-512.ico">
+        Title="Editor" Height="486" Width="810" Loaded="WindowMain_Loaded" MinWidth="900" MinHeight="500"
+        KeyDown="WindowMain_KeyDown"
+        WindowState="Maximized"
+        Icon="occult-icons_skull-512.ico">
     <Grid x:Name="GrdWindow">
-        <materialDesign:DrawerHost x:Name="DhFile">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <StackPanel Margin="16">
-                    <TextBlock Margin="4" HorizontalAlignment="Center">LEFT FIELD</TextBlock>
-                    <Button Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Left}"
-                        Margin="4" HorizontalAlignment="Center"
-                        Style="{DynamicResource MaterialDesignFlatButton}">
-                        CLOSE THIS
-                    </Button>
-                </StackPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
-        </materialDesign:DrawerHost>
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <materialDesign:ColorZone Mode="PrimaryMid" VerticalContentAlignment="Center" DockPanel.Dock="Top">
                 <Grid>
