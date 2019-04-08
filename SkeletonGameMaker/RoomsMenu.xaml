@@ -17,9 +17,7 @@
                    HorizontalAlignment="Left" 
                    Margin="10,10,0,0" 
                    VerticalAlignment="Top" 
-                   FontSize="24">
-            Rooms
-        </TextBlock>
+                   FontSize="24">Rooms</TextBlock>
         <materialDesign:Card Margin="10,50,5,10" VerticalAlignment="Stretch" MinWidth="164">
             <ListView x:Name="LvRoomsList" Margin="10" SelectionChanged="LvRoomsList_SelectionChanged">
                 <ListView.View>
@@ -31,7 +29,7 @@
                 </ListView.View>
             </ListView>
         </materialDesign:Card>
-        <Grid x:Name="GrdDetails" Margin="5,50,10,41" Grid.Column="1">
+        <Grid x:Name="GrdDetails" Margin="5,50,10,10" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -48,7 +46,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <materialDesign:Card x:Name="GrdItemsList" Grid.Row="1" VerticalAlignment="Stretch" Margin="5,5,5,10" MinWidth="164">
+                <materialDesign:Card x:Name="GrdItemsList" Grid.Row="1" VerticalAlignment="Stretch" Margin="5,5,5,0" MinWidth="164">
                     <Grid Margin="5">
                         <ListView x:Name="LvItemsList" SelectionChanged="LvItemsList_SelectionChanged">
                             <ListView.View>
@@ -62,7 +60,7 @@
                         <local:DoorMenu x:Name="UcDoorMenu" Visibility="Collapsed"/>
                     </Grid>
                 </materialDesign:Card>
-                <materialDesign:Card Grid.Column="2">
+                <materialDesign:Card Grid.Column="2" VerticalAlignment="Stretch">
                     <Grid x:Name="GrdRoomButtons" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -77,20 +75,20 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="BtnNorth" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View North Room" Click="BtnNorth_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnEast" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View East Room" Margin="0,2.5,2.5,2.5" Click="BtnEast_Click" Grid.Row="1" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnSouth" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View South Room" Margin="0,2.5,2.5,2.5" Click="BtnSouth_Click" Grid.Row="2" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnWest" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View West Room" Margin="0,2.5,2.5,2.5" Click="BtnWest_Click" Grid.Row="3" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnUp" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View Up Room" Margin="0,2.5,2.5,2.5" Click="BtnUp_Click" Grid.Row="4" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnDown" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View Down Room" Margin="0,2.5,2.5,2.5" Click="BtnDown_Click" Grid.Row="5" Grid.ColumnSpan="1"/>
-                        <Button x:Name="BtnDelete" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Delete Room" Margin="0,2.5" Click="BtnDelete_Click" Grid.Row="6" Grid.ColumnSpan="2"/>
+                        <Button x:Name="BtnNorth" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View North Room" Click="BtnNorth_Click" Grid.Row="0" Margin="5" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnEast" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View East Room" Margin="5" Click="BtnEast_Click" Grid.Row="1" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnSouth" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View South Room" Margin="5" Click="BtnSouth_Click" Grid.Row="2" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnWest" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View West Room" Margin="5" Click="BtnWest_Click" Grid.Row="3" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnUp" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View Up Room" Margin="5" Click="BtnUp_Click" Grid.Row="4" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnDown" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="View Down Room" Margin="5" Click="BtnDown_Click" Grid.Row="5" Grid.ColumnSpan="1" Height="Auto"/>
+                        <Button x:Name="BtnDelete" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Delete Room" Margin="5" Click="BtnDelete_Click" Grid.Row="6" Grid.ColumnSpan="2" Height="Auto"/>
 
-                        <Button x:Name="BtnNorthDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create North Door" Click="BtnNewDoor_Click" Grid.Row="0" Margin="0,2.5,2.5,2.5" Grid.Column="1"/>
-                        <Button x:Name="BtnEastDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create East Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="1" Grid.Column="1"/>
-                        <Button x:Name="BtnSouthDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create South Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="2" Grid.Column="1"/>
-                        <Button x:Name="BtnWestDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create West Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="3" Grid.Column="1"/>
-                        <Button x:Name="BtnUpDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create Up Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="4" Grid.Column="1"/>
-                        <Button x:Name="BtnDownDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create Down Door" Margin="0,2.5,2.5,2.5" Click="BtnNewDoor_Click" Grid.Row="5" Grid.Column="1"/>
+                        <Button x:Name="BtnNorthDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create North Door" Click="BtnNewDoor_Click" Grid.Row="0" Margin="5" Grid.Column="1" Height="Auto"/>
+                        <Button x:Name="BtnEastDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create East Door" Margin="5" Click="BtnNewDoor_Click" Grid.Row="1" Grid.Column="1" Height="Auto"/>
+                        <Button x:Name="BtnSouthDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create South Door" Margin="5" Click="BtnNewDoor_Click" Grid.Row="2" Grid.Column="1" Height="Auto"/>
+                        <Button x:Name="BtnWestDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create West Door" Margin="5" Click="BtnNewDoor_Click" Grid.Row="3" Grid.Column="1" Height="Auto"/>
+                        <Button x:Name="BtnUpDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create Up Door" Margin="5" Click="BtnNewDoor_Click" Grid.Row="4" Grid.Column="1" Height="Auto"/>
+                        <Button x:Name="BtnDownDoor" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Create Down Door" Margin="5" Click="BtnNewDoor_Click" Grid.Row="5" Grid.Column="1" Height="Auto"/>
                     </Grid>
                 </materialDesign:Card>
                 <Grid x:Name="GrdItemButtons" Grid.Column="1">
