@@ -140,7 +140,7 @@ namespace SkeletonGameMaker
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't save game correctly\n\n" + ex, "Failed");
+                SbMain.MessageQueue.Enqueue("Couldn't save game correctly", "VIEW DETAILS", () => MessageBox.Show(ex.Message));
             }
         }
 
