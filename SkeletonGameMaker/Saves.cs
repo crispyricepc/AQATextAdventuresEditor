@@ -157,7 +157,18 @@ namespace SkeletonGameMaker
 
             listGfd = GetRecents();
 
-            listGfd.Add(gfd);
+            for (int i = 0; i < listGfd.Count; i++)
+            {
+                if (listGfd[i].Path == gfd.Path)
+                {
+                    listGfd.RemoveAt(i);
+                }
+            }
+            listGfd.Insert(0, gfd);
+            if (listGfd.Count > 20)
+            {
+                listGfd.RemoveAt(listGfd.Count - 1);
+            }
 
             recentsJson = JsonConvert.SerializeObject(listGfd, Formatting.Indented);
             File.WriteAllText(ApplicationDataPath + "recents.json", recentsJson);
