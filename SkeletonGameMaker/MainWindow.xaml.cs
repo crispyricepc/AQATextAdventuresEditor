@@ -36,6 +36,8 @@ namespace SkeletonGameMaker
             {
                 Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
                 Saves.AddToRecents(new GameFileData(Saves.Filename, System.IO.Path.GetFileName(Saves.Filename), DateTime.Now));
+
+                RbRooms.IsChecked = true;
             }
             catch (FileNotFoundException ex)
             {
@@ -117,8 +119,7 @@ namespace SkeletonGameMaker
         
         private void RoomsMenuBtnCreateNewItem_Click(object sender, EventArgs e)
         {
-            HideAll();
-            UcItemsMenu.Visibility = Visibility.Visible;
+            RbItems.IsChecked = true;
             RoomsMenu uc = sender as RoomsMenu;
             UcItemsMenu.ChangeSelection(0, uc.Room);
         }
