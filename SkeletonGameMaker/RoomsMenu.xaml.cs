@@ -435,6 +435,8 @@ namespace SkeletonGameMaker
             Up = Room.Up;
             Down = Room.Down;
 
+            UcDoorMenu.Visibility = Visibility.Collapsed;
+
             CheckForDoors(ref Room);
 
             // Update Description
