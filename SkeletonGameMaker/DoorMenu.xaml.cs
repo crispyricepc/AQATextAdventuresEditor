@@ -89,7 +89,16 @@ namespace SkeletonGameMaker
                 lowerCaseCb.Add(status.Content.ToString().ToLower());
             }
             string doorColour = primarydoor.GetDoorColour().ToLower();
-            LvDoorColours.SelectedIndex = lowerCaseLv.IndexOf(doorColour);
+            int lvIndex = lowerCaseLv.IndexOf(doorColour);
+            if (lvIndex == -1)
+            {
+                lowerCaseLv.Add(doorColour);
+                LvDoorColours.Items.Add(doorColour);
+
+                lvIndex = lowerCaseLv.IndexOf(doorColour);
+            }
+            LvDoorColours.SelectedIndex = lvIndex;
+
             string doorStatus = primarydoor.GetStatus()[0];
             CbDoorStatus.SelectedIndex = lowerCaseCb.IndexOf(doorStatus);
         }
