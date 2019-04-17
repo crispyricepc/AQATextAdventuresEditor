@@ -436,6 +436,7 @@ namespace SkeletonGameMaker
             Down = Room.Down;
 
             UcDoorMenu.Visibility = Visibility.Collapsed;
+            LvItemsList.Visibility = Visibility.Visible;
 
             CheckForDoors(ref Room);
 

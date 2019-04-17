@@ -136,7 +136,7 @@ namespace SkeletonGameMaker
             try
             {
                 Saves.MakeGame(Saves.Filename);
-                MessageBox.Show("Game successfully saved to " + Saves.Filename, "Done");
+                SbMain.MessageQueue.Enqueue("Game successfully saved to " + System.IO.Path.GetFileName(Saves.Filename));
             }
             catch (Exception ex)
             {

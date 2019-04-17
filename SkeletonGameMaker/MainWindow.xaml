@@ -36,5 +36,7 @@
                 <local:CharactersMenu x:Name="UcCharactersMenu" Visibility="Collapsed"/>
             </Grid>
         </DockPanel>
+        <materialDesign:Snackbar x:Name="SbMain" IsActive="False" MessageQueue="{materialDesign:MessageQueue}">
+        </materialDesign:Snackbar>
     </Grid>
 </Window>
