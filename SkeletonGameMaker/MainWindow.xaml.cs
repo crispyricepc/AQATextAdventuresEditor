@@ -37,11 +37,12 @@ namespace SkeletonGameMaker
                 Saves.LoadGame(Saves.Filename, Saves.Characters, Saves.Items, Saves.Places);
                 Saves.AddToRecents(new GameFileData(Saves.Filename, System.IO.Path.GetFileName(Saves.Filename), DateTime.Now));
 
+                SbMain.MessageQueue.Enqueue("Game loaded sucessfully");
                 RbRooms.IsChecked = true;
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show("File not found\n" + ex.Message, "Error");
+                ((App)Application.Current).ShowException("File not found", ex);
             }
         }
 
@@ -140,7 +141,7 @@ namespace SkeletonGameMaker
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't save game correctly\n\n" + ex, "Failed");
+                ((App)Application.Current).ShowException("Couldn't save game correctly", ex);
             }
         }
 

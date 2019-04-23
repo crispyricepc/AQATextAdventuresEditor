@@ -11,6 +11,8 @@ namespace SkeletonGameMaker
 {
     public partial class App : Application
     {
+        MainWindow WindowMain;
+
         /// <summary>
         /// Ensures the correct files exist in AppData before continuing
         /// </summary>
@@ -18,6 +20,7 @@ namespace SkeletonGameMaker
         /// <param name="e">This is passed into SelectFile</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            WindowMain = new MainWindow();
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             Saves.ApplicationDataPath = Path.Combine(appDataPath, @"SkeletonGameMaker\");
             if (!Directory.Exists(Saves.ApplicationDataPath))
@@ -25,6 +28,11 @@ namespace SkeletonGameMaker
                 Directory.CreateDirectory(Saves.ApplicationDataPath);
             }
             SelectFile(e);
+        }
+
+        public void ShowException(string miniMessage, Exception ex)
+        {
+            WindowMain.SbMain.MessageQueue.Enqueue(miniMessage, "VIEW DETAILS", () => MessageBox.Show(ex.Message));
         }
 
         /// <summary>
@@ -42,8 +50,7 @@ namespace SkeletonGameMaker
                 fileSelected = true;
             }
 
-            MainWindow window = new MainWindow();
-            window.StartUp(fileSelected, createNew);
+            WindowMain.StartUp(fileSelected, createNew);
 
             Current.Shutdown();
         }

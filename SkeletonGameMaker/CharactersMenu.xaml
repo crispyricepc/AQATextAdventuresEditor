@@ -4,22 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SkeletonGameMaker"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="LvCharacters" Margin="10,10,5,10" SelectionChanged="LvCharacters_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCharacters, Mode=OneWay}">
-                        <GridViewColumnHeader Content="Characters"/>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <materialDesign:Card Margin="10,10,5,10" VerticalAlignment="Stretch">
+            <ListView x:Name="LvCharacters" Margin="5" SelectionChanged="LvCharacters_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="{Binding ActualWidth, ElementName=LvCharacters, Mode=OneWay}">
+                            <GridViewColumnHeader Content="Characters"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
         <Grid x:Name="GrdDetails" Grid.Column="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
